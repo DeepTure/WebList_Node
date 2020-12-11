@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--
+        Siempre que busquen un elemento dentro de public usen '/public/nombre_del_Archivo'
+    -->
+        <link rel="stylesheet" href="/public/archivo.js" />
+        <title>Archivo de ejemplo</title>
+    </head>
+    <body>
+        <!--Ejs simple-->
+        <%if(variable){%>
+        <p>Existe una variable</p>
+        <%}else{%>
+        <p>No hay variable unu</p>
+        <% } %>
+
+        <p>La variable es: <%=variable%></p>
+    </body>
+</html>
