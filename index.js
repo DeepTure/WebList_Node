@@ -13,7 +13,7 @@ const Parser = require("body-parser").urlencoded({ extended: false });
 
 //routers
 const main = require("./routes/main.routes");
-const crudAlumno = require("./routes/crud.alumno.routes");
+//const crudAlumno = require("./routes/crud.alumno.routes");
 const crudAsistencia = require("./routes/logic.paseLista.routes");
 
 //variables

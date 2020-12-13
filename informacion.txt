@@ -9,3 +9,4 @@ si tienen alguna duda contactenme
 //Comandos para subir a github
 git add .
 git commit -m ""
+git push origin master

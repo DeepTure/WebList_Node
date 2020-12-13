@@ -22,6 +22,33 @@
         <br><br>
         <input type="submit" value="Registrar por submit">
     </form>
+
+    <br><br><hr>
+    <form>
+        <h1>Eliminar</h1>
+        Ingrese el id de la inasistencia<br>
+        <input type="text" name="inasistencia" id="inas">
+        <br><br>
+        <input type="button" value="Eliminar inasistencia" onclick="eliminar()">
+    </form>
+    <br><br><hr>
+    <form>
+        <h1>Actualizar</h1>
+        Ingrese el ID de la inasistencia
+        <br>
+        <input type="text" id="inass">
+        <br><br>
+        Ingrese el nuevo id de la inscripcion del alumno
+        <br>
+        <input type="text" name="inscripcion" id="insc" placeholder="Inscripcion">
+        <br><br>
+        Ingrese el nuevo id de la materia a la que faltó
+        <br>
+        <input type="text" id="mate">
+        <br><br>
+        <input type="button" value="Actualizar" onclick="actualizar()">
+    </form>
+
 </body>
 <script>
     function reg(){
@@ -39,6 +66,41 @@
                 error:function(response){
                     alert(response);
                     console.log(response)
+                }
+            });
+        }
+
+        function eliminar(){
+            $.ajax({
+                url:'/delete',
+                type:'post',
+                data:{inasistencia:document.getElementById('inas').value},
+                success: function(response){
+                    alert(response);
+                    console.log(response);
+                },
+                error:function(response){
+                    alert(response);
+                    console.log(response);
+                }
+            });
+        }
+        function actualizar(){
+            $.ajax({
+                url:'/update',
+                type:'post',
+                data:{
+                    inasistencia:document.getElementById('inass').value,
+                    inscripcion:document.getElementById('insc').value,
+                    materia:document.getElementById('mate').value
+                },
+                success: function(response){
+                    alert(response);
+                    console.log(response);
+                },
+                error:function(response){
+                    alert(response);
+                    console.log(response);
                 }
             });
         }

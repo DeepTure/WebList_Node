@@ -7,13 +7,31 @@ router.post('/save',(req,res)=>{
     //creamos nuestras constantes para las consultas
     const data = req.body;
     console.log(data.materia)
-    db.query('INSERT INTO inasistencia VALUES (?,?,now(),now())',[data.inscripcion,data.materia],(err,response)=>{
-        if(err)res.json(err)
-        res.send(response);
+    //los parametros son (id_inasistencia,id_materia,id_inscripcion)
+    db.query("INSERT INTO inasistencia VALUES(concat(?,CAST(now() AS CHAR)),?,?,current_date(),current_time());",[data.inscripcion,data.materia,data.inscripcion],(err,response)=>{
+        if(err)res.json(err);
+        res.send('Registrado con exito');
     });
 });
 
-//esta ruta es solo para prueba
+//para las consultas sql uso response para capturar lo que nos regresa la db y res para el response que regresa el servidor
+router.post('/delete',(req,res)=>{
+    const data = req.body;
+    db.query("DELETE FROM inasistencia WHERE idInasistencia = ?",[data.inasistencia],(err,response)=>{
+        if(err)res.json(err);
+        res.send('Eliminado con exito');
+    });
+});
+
+router.post('/update',(req,res)=>{
+    const data = req.body;
+    db.query("UPDATE inasistencia SET idMateria_profesor = ?, idInscripcion=? WHERE idInasistencia = ?",[data.materia,data.inscripcion,data.inasistencia],(err,response)=>{
+        if(err)res.json(err);
+        res.send('Se ha actualizado con exito');
+    });
+});
+
+//esta ruta es solo para prueba para redireccionar
 router.get('/prueba',(req,res)=>{
     res.render('pruebaInasistencia',{});
 });
