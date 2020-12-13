@@ -10,7 +10,7 @@ const db = require("../database/connection");
 
 //router simple
 router.get("/", (req, res) => {
-    return res.send("Hola mundo");
+    return res.render("archivo.html",{});
 });
 
 /*

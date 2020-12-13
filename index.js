@@ -13,7 +13,8 @@ const Parser = require("body-parser").urlencoded({ extended: false });
 
 //routers
 const main = require("./routes/main.routes");
-const crud = require("./routes/crud.alumno.routes");
+const crudAlumno = require("./routes/crud.alumno.routes");
+const crudAsistencia = require("./routes/logic.paseLista.routes");
 
 //variables
 
@@ -32,24 +33,28 @@ app.set("views", path.join(__dirname, "views"));
 app.use(morgan("dev"));
 //para acceder a archivos estaticos
 app.use("/public", express.static("public"));
+//usamos el body parser
+app.use(Parser);
 
 //rutas
 app.use(main);
-app.use(crud);
+//app.use(crudAlumno);
+app.use(crudAsistencia);
 
 //rutas de emergencia cuando ocurre
 //un error 404 (pagina no encontrada) o 500 (error interno del servidor)
-app.use((req, res) => {
+//NO DESCOMENTAR ESTAS LINEAS HASTA QUE EXISTAN LAS PAGINAS
+/*app.use((req, res) => {
     res.status(404);
     //se necesita crear la pagina
     res.render("404.html");
-});
-
+});*/
+/* 
 app.use((error, req, res, next) => {
     res.status(500);
     //se necesita crear la pagina
     res.render("500.html", { error: error });
-});
+});*/
 
 //montando el servidor
 app.listen(app.get("host"), (req, res) => {
