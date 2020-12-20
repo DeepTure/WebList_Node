@@ -1,0 +1,74 @@
+*{
+    font-family: Arial;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+}
+
+aside{
+    border: 0.1vw solid white;
+}
+.asidMin{
+    border: 0.1vw solid white;
+}
+.title{
+    font-size: 2vw;
+}
+.subtitle{
+    font-size: 1.2vw;
+}
+.space{
+    font-size: 0.7vw;	
+}
+.inputtxt{
+    border: 0.1vw solid white;
+    border-radius: 0.5vw;
+    font-size: 1vw;
+}
+.inputbutn{
+    border: 0.1vw solid white;
+    border-radius: 0.5vw;
+    font-size: 1vw;
+}
+.atxt{
+    font-size: 1.2vw;
+}
+
+aside.white{
+    color: white;
+    border: 0.1vw solid white;
+}
+.asidMin.white{
+    color: white;
+    border: 0.1vw solid white;
+}
+.title.white{
+    color: white;
+    font-size: 2vw;
+}
+.subtitle.white{
+    color: white;
+    font-size: 1.2vw;
+}
+.space.white{
+    color: white;
+    font-size: 0.7vw;	
+}
+.inputtxt.white{
+    color: white;
+    border: 0.1vw solid white;
+    border-radius: 0.5vw;
+    font-size: 1vw;
+}
+.inputbutn.white{
+    color: white;
+    border: 0.1vw solid white;
+    border-radius: 0.5vw;
+    font-size: 1vw;
+}
+.atxt.white{
+    color: white;
+    font-size: 1.2vw;
+}
