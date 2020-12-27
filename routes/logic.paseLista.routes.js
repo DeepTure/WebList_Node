@@ -31,6 +31,33 @@ router.post('/update',(req,res)=>{
     });
 });
 
+//Para obtener a todos los alumnos de un grupo
+router.post('/getAlumnosGrupo',(req,res)=>{
+    const data = req.body;
+    //el id del grupo debe ser pasado en mayusculoas o no lo encontrará
+    try{
+        db.query('SELECT boleta FROM inscripcion WHERE idGrupo=?',[data.grupoS],(err,boletas)=>{
+            if(err)res.json(err)
+            db.query('SELECT boleta,nombre,app FROM alumno',(err,alumnos)=>{
+                let alumnosDelGrupo = [];
+                if(err)res.json(err)
+                for(var i=0; i<alumnos.length;i++){
+                    for(var j=0; j<boletas.length;j++){
+                        if(alumnos[i].boleta==boletas[j].boleta){
+                            let alumno = alumnos[i];
+                            //lo ponemos en ingles para evitar la confusion
+                            alumnosDelGrupo.push({bol:alumno.boleta, name: alumno.nombre, lastName: alumno.app});
+                        }
+                    }
+                }
+                res.json(alumnosDelGrupo);
+            });
+        });
+    }catch(e){
+        res.send(e);
+    }
+});
+
 //esta ruta es solo para prueba para redireccionar
 router.get('/prueba',(req,res)=>{
     res.render('pruebaInasistencia',{});

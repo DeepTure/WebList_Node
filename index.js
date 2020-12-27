@@ -15,6 +15,7 @@ const Parser = require("body-parser").urlencoded({ extended: false });
 const main = require("./routes/main.routes");
 //const crudAlumno = require("./routes/crud.alumno.routes");
 const crudAsistencia = require("./routes/logic.paseLista.routes");
+const navegacion = require('./routes/navegacion.rutas');
 
 //variables
 
@@ -40,6 +41,7 @@ app.use(Parser);
 app.use(main);
 //app.use(crudAlumno);
 app.use(crudAsistencia);
+app.use(navegacion);
 
 //rutas de emergencia cuando ocurre
 //un error 404 (pagina no encontrada) o 500 (error interno del servidor)
