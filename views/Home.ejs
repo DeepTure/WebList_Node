@@ -160,13 +160,13 @@
                 <div name="lista">
                     <p class="atxt white">
                         Materia<br>
-                        <input type="radio" style="width: 5%; height: 1vw;" name="rd" id="mat1" value="PSW">
-                        <label for="mat1" class="atxt white">Programacion y servicios web</label><br>
-                        <input type="radio" style="width: 5%; height: 1vw;" name="rd" id="mat2" value="TPPC">
-                        <label for="mat2" class="atxt white">Tecnicas de programacion con calidad</label><br>
-                        <input type="radio" style="width: 5%; height: 1vw;" name="rd" id="mat3" value="BBDD">
-                        <label for="mat3" class="atxt white">Base de datos</label><br>
-                        <input type="radio" style="width: 5%; height: 1vw;" name="rd" id="mat4" value="LPTI">
+                        <input type="radio" style="width: 5%; height: 1vw;" name="rd" id="mat1" onclick="prepararIdMateria('SWyA')">
+                        <label for="mat1" class="atxt white">Seguridad web y aplicaciones</label><br>
+                        <input type="radio" style="width: 5%; height: 1vw;" name="rd" id="mat2" onclick="prepararIdMateria('ISD')">
+                        <label for="mat2" class="atxt white">Introducción a los sustemas distribuidos</label><br>
+                        <input type="radio" style="width: 5%; height: 1vw;" name="rd" id="mat3" onclick="prepararIdMateria('IIDP')">
+                        <label for="mat3" class="atxt white">Ingeniería de pruebas</label><br>
+                        <input type="radio" style="width: 5%; height: 1vw;" name="rd" id="mat4" onclick="prepararIdMateria('LPTIIII')">
                         <label for="mat" class="atxt white">Laboratorio de proyectos de tecnologias de la informacion</label>
                     </p>
                     <p class="space">
@@ -246,14 +246,7 @@
                             <br>
                         </p>
 
-                        <input type="hidden" name="instruction" value="saveAs">
-                        <!-- Este id command es el que lleva la materia -->
-                        <input type="hidden" name="materia" id="command" value="null">
-                        <!--Este hidden tiene el id del profesor-->
-                        <input type="hidden" name="idP" value="">
-                        <!-- Este es el hidden donde tiene el grupo -->
-                        <input type="hidden" name="gr" value="">
-                        <input type="submit" name="save" value="Guardar" id="btn" class="inputbutn int white">
+                        <input type="button" name="save" value="Guardar" id="btn" class="inputbutn int white" onclick="registrarInasistencia()">
                         <p class="space">
                             <br>
                         </p>
@@ -370,12 +363,42 @@
                            `+alumnos[i].name+' '+alumnos[i].lastName+` 
                         </td>  
                         <td class="atxt white">
-                            <input type="checkbox" style="width: 5%; height: 1vw;" name="asistencia" value="">
+                            <input type="checkbox" style="width: 5%; height: 1vw;" name="asistencia" onclick="prepararBoletas(`+alumnos[i].bol+`)" name="`+alumnos[i].bol+`">
                         </td>   
                     </tr>
                     `
                 }
                 $('#alumnosDeGrupo').html(codigo);
+            }
+
+            //esta funcion se encarga de preparar las boletas, cada vez que hace click en un alumno para registrar su inasistencia, entonces se carga en esta funcion y se prepara 
+            //para cuando el profesor presione en guardar
+            let boletasDeInasistencia = [];
+            function prepararBoletas(boleta){
+                boletasDeInasistencia.push(boleta);
+            }
+
+            //esta funcion se encarga de almacenar la materia del profesor
+            let materiaDeLaInasistencia = [];
+            function prepararIdMateria(materia){
+                materiaDeLaInasistencia[0] = materia;
+            }
+
+            //para guardar la inasistencia usamos esta petición
+            function registrarInasistencia(){
+                $.ajax({
+                    url:'/saveInasistencia',
+                    type:'post',
+                    data:{boletas: boletasDeInasistencia, numEmpleado:'526', idMateria:materiaDeLaInasistencia},
+                    success: function(response){
+                        console.log(response)
+                        alert(response);
+                    },
+                    error:function(response){
+                        alert(response);
+                        console.log(response)
+                    }
+                });
             }
         </script>
 

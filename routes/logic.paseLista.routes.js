@@ -3,14 +3,33 @@ const router = require("express").Router();
 const db = require("../database/connection");
 
 //para guardar la inasistencia necesito que me manden en el req su id de inscripcion y su id de materia profesor
-router.post('/save',(req,res)=>{
+router.post('/saveInasistencia',(req,res)=>{
     //creamos nuestras constantes para las consultas
     const data = req.body;
-    console.log(data.materia)
-    //los parametros son (id_inasistencia,id_materia,id_inscripcion)
-    db.query("INSERT INTO inasistencia VALUES(concat(?,CAST(now() AS CHAR)),?,?,current_date(),current_time());",[data.inscripcion,data.materia,data.inscripcion],(err,response)=>{
-        if(err)res.json(err);
-        res.send('Registrado con exito');
+    db.query('SELECT idInscripcion,boleta FROM inscripcion',(err,inscripciones)=>{
+        if(err)res.json(err)
+        const boleta = data.boletas;
+        console.log(data.numEmpleado);
+        let idIns = []; //este arreglo guardará los id de los alumnos que coincidan
+        for(var i=0; i<inscripciones.length;i++){
+            for(var j=0; j<boleta.length;j++){
+                if(inscripciones[i].boleta==data.boletas[j]){
+                    idIns.push(inscripciones[i].idInscripcion);
+                }
+            }
+        }
+        //ahora vamos a obtener el id de la materia y el profesor
+        db.query('SELECT idMateria_profesor FROM materia_profesor WHERE numEmpleado=? and idMateria=?',[data.numEmpleado,data.idMateria],(err,idmp)=>{
+            if(err)res.json(err)
+            for(var i=0; i<data.boletas.length;i++){
+                //preparamos los valores
+                let inas = idmp[0].idMateria_profesor+idIns[i];
+                db.query('INSERT INTO inasistencia VALUES(concat(?,CAST(now() AS CHAR)),?,?,current_date(),current_time())',[inas,idmp[0].idMateria_profesor,idIns[i]],(err,respuesta)=>{
+                    if(err)res.json(err)
+                    res.send(respuesta);
+                });
+            }
+        });
     });
 });
 
