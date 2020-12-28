@@ -386,10 +386,12 @@
 
             //para guardar la inasistencia usamos esta petición
             function registrarInasistencia(){
+                var sendBoletas = JSON.stringify(boletasDeInasistencia);
+                var sendMaterias = JSON.stringify(materiaDeLaInasistencia);
                 $.ajax({
                     url:'/saveInasistencia',
                     type:'post',
-                    data:{boletas: boletasDeInasistencia, numEmpleado:'526', idMateria:materiaDeLaInasistencia},
+                    data:{boletas: sendBoletas, numEmpleado:'526', idMateria:sendMaterias},
                     success: function(response){
                         console.log(response)
                         alert(response);

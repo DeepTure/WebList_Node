@@ -9,7 +9,6 @@ router.post('/saveInasistencia',(req,res)=>{
     db.query('SELECT idInscripcion,boleta FROM inscripcion',(err,inscripciones)=>{
         if(err)res.json(err)
         const boleta = data.boletas;
-        console.log(data.numEmpleado);
         let idIns = []; //este arreglo guardará los id de los alumnos que coincidan
         for(var i=0; i<inscripciones.length;i++){
             for(var j=0; j<boleta.length;j++){
@@ -21,6 +20,7 @@ router.post('/saveInasistencia',(req,res)=>{
         //ahora vamos a obtener el id de la materia y el profesor
         db.query('SELECT idMateria_profesor FROM materia_profesor WHERE numEmpleado=? and idMateria=?',[data.numEmpleado,data.idMateria],(err,idmp)=>{
             if(err)res.json(err)
+            console.log(data.idMateria);
             for(var i=0; i<data.boletas.length;i++){
                 //preparamos los valores
                 let inas = idmp[0].idMateria_profesor+idIns[i];
