@@ -99,8 +99,6 @@
             </p>
             <div class="atxt">
                 <form action="CRUDalumno" method="post">
-                    <input type="hidden" name="idpr" value="">
-                    <input type="hidden" name="instruction" value="4IV7">
                     <input type="button" class="inputbutn int nav" name="" onclick="getAlumnos('5IV7')" value="5IV7">
                 </form>
 
@@ -109,8 +107,6 @@
                 </p>
 
                 <form action="CRUDalumno" method="post">
-                    <input type="hidden" name="idpr" value="">
-                    <input type="hidden" name="instruction" value="4IV8">
                     <input type="button" class="inputbutn int nav" name="" onclick="getAlumnos('5IV6')" value="5IV6">
                 </form>
 
@@ -119,8 +115,6 @@
                 </p>
 
                 <form action="CRUDalumno" method="post">
-                    <input type="hidden" name="idpr" value="">
-                    <input type="hidden" name="instruction" value="5IV9">
                     <input type="button" class="inputbutn int nav" name="" onclick="getAlumnos('5IV9')" value="5IV9">
                 </form>
             </div>
@@ -172,26 +166,6 @@
                     <p class="space">
                         <br><br>
                     </p>
-                    <script type="text/javascript">
-                        $(document).ready(function () {
-                            $('#mat1').click(function () {
-                                document.getElementById('command').value = 'PSW';
-                                document.getElementById('command2').value = 'PSW';
-                            });
-                            $('#mat2').click(function () {
-                                document.getElementById('command').value = 'TPPC';
-                                document.getElementById('command2').value = 'TPPC';
-                            });
-                            $('#mat3').click(function () {
-                                document.getElementById('command').value = 'BBDD';
-                                document.getElementById('command2').value = 'BBDD';
-                            });
-                            $('#mat4').click(function () {
-                                document.getElementById('command').value = 'LPTI';
-                                document.getElementById('command2').value = 'LPTI';
-                            });
-                        });
-                    </script>
                 </div>
                 <!--botones para borrar o configurar las listas
                 Tabla que muestra las faltas
@@ -283,12 +257,6 @@
 
                         <tr>
                         <form action="CRUDalumno" method="post">
-                            <input type="hidden" name="gr" value="">
-                            <input type="hidden" name="idpr" value="">
-                            <input type="hidden" name="materia" value="">
-                            <input type="hidden" name="boleta" value="">
-                            <input type="hidden" name="dia" value="">
-                            <input type="hidden" name="instruction" value="eliminarFal">
                             <td>
                                 Boleta</td><td>Nombre Apellidos
                             </td>
@@ -304,10 +272,6 @@
                         Insertar nueva falta.
                     </p>
                     <form action="CRUDalumno" method="post">
-                        <input type="hidden" name="gr" value="">
-                        <input type="hidden" name="idpr" value="">
-                        <input type="hidden" name="materia" value="">
-                        <input type="hidden" name="dia" value="">
                         <label for="bol">Numero de Boleta</label>
                         <input type="text" id="bol" name="boleta" class="inputtxt white"/>
                         <input type="hidden" name="instruction" value="añadirFal">
@@ -321,88 +285,8 @@
                 </div>
         </div>
 
-        <script type="text/javascript">
-            //extraer los grupos
-            function getAlumnos(grupo){
-                $.ajax({
-                    url:'/getAlumnosGrupo',
-                    type:'post',
-                    data:{grupoS:grupo},
-                    success: function(response){
-                        console.log(response)
-                        mostrarAlumnos(response);
-                    },
-                    error:function(response){
-                        alert(response);
-                        console.log(response)
-                    }
-                });
-            }
-
-            //para mostrar en la tabla los grupos //alumnosDeGrupo
-            function mostrarAlumnos(alumnos){
-                let codigo = "";
-                codigo = `<tr>
-                                <td class="atxt white">
-                                    Boleta
-                                </td>
-                                <td class="atxt white">    
-                                    Nombre
-                                </td>
-                                <td class="atxt white">
-                                    Asistencia
-                                </td>
-                            </tr>`
-                for(var i=0; i<alumnos.length; i++){
-                    codigo += `
-                    <tr>
-                        <td class="atxt white">
-                           `+alumnos[i].bol+` 
-                        </td>   
-                        <td class="atxt white">
-                           `+alumnos[i].name+' '+alumnos[i].lastName+` 
-                        </td>  
-                        <td class="atxt white">
-                            <input type="checkbox" style="width: 5%; height: 1vw;" name="asistencia" onclick="prepararBoletas(`+alumnos[i].bol+`)" name="`+alumnos[i].bol+`">
-                        </td>   
-                    </tr>
-                    `
-                }
-                $('#alumnosDeGrupo').html(codigo);
-            }
-
-            //esta funcion se encarga de preparar las boletas, cada vez que hace click en un alumno para registrar su inasistencia, entonces se carga en esta funcion y se prepara 
-            //para cuando el profesor presione en guardar
-            let boletasDeInasistencia = [];
-            function prepararBoletas(boleta){
-                boletasDeInasistencia.push(boleta);
-            }
-
-            //esta funcion se encarga de almacenar la materia del profesor
-            let materiaDeLaInasistencia = [];
-            function prepararIdMateria(materia){
-                materiaDeLaInasistencia[0] = materia;
-            }
-
-            //para guardar la inasistencia usamos esta petición
-            function registrarInasistencia(){
-                var sendBoletas = JSON.stringify(boletasDeInasistencia);
-                var sendMaterias = JSON.stringify(materiaDeLaInasistencia);
-                $.ajax({
-                    url:'/saveInasistencia',
-                    type:'post',
-                    data:{boletas: sendBoletas, numEmpleado:'526', idMateria:sendMaterias},
-                    success: function(response){
-                        console.log(response)
-                        alert(response);
-                    },
-                    error:function(response){
-                        alert(response);
-                        console.log(response)
-                    }
-                });
-            }
-        </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script type="text/javascript" src="/public/asistencia.js"></script>
 
     </body>
 </html>
