@@ -149,10 +149,12 @@ function mostrarAlumnosDeHoy(alumnos){
 }
 
 function eliminarInasistencia(boleta){
+    const fecha = new Date();
+    let hoy = fecha.getFullYear()+'-'+(fecha.getMonth()+1)+'-'+fecha.getDate();
     $.ajax({
         url:'/deleteInasIstencia',
         type:'post',
-        data:{bol:boleta},
+        data:{bol:boleta, dia:hoy},
         success: function(response){
             console.log(response)
             ventanaEmergente('Correcto',"Se ha eliminado de manera correcta la inasistencia",'success');

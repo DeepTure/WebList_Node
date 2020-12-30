@@ -40,8 +40,8 @@ router.post("/deleteInasIstencia", (req, res) => {
         if(err)res.json(err)
         if(id){
             db.query(
-                "DELETE FROM inasistencia WHERE idInscripcion = ?",
-                [id[0].idInscripcion],
+                "DELETE FROM inasistencia WHERE idInscripcion = ? AND dia=?",
+                [id[0].idInscripcion, req.body.dia],
                 (err, response) => {
                     if (err) res.json(err);
                     res.send(response);
