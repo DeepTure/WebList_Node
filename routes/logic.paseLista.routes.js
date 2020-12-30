@@ -34,16 +34,23 @@ router.post('/saveInasistencia',(req,res)=>{
 });
 
 //para las consultas sql uso response para capturar lo que nos regresa la db y res para el response que regresa el servidor
-router.post("/delete", (req, res) => {
-    const data = req.body;
-    db.query(
-        "DELETE FROM inasistencia WHERE idInasistencia = ?",
-        [data.inasistencia],
-        (err, response) => {
-            if (err) res.json(err);
-            res.send("Eliminado con exito");
+router.post("/deleteInasIstencia", (req, res) => {
+    const boleta = req.body.bol;
+    db.query('SELECT idInscripcion FROM inscripcion WHERE boleta=?',[boleta],(err,id)=>{
+        if(err)res.json(err)
+        if(id){
+            db.query(
+                "DELETE FROM inasistencia WHERE idInscripcion = ?",
+                [id[0].idInscripcion],
+                (err, response) => {
+                    if (err) res.json(err);
+                    res.send(response);
+                }
+            );
+        }else{
+            res.send('No se encontró la boleta (fatal error)');
         }
-    );
+    });
 });
 
 router.post("/update", (req, res) => {
@@ -93,6 +100,38 @@ router.post("/getAlumnosGrupo", (req, res) => {
     } catch (e) {
         res.send(e);
     }
+});
+
+//esto es para obtener a todos los amlumnos que hayan sido registrados hoy
+router.post('/getAlumnosToday',(req,res)=>{
+    const data = req.body;
+    db.query('SELECT idInscripcion FROM inasistencia WHERE dia=?',[data.fecha],(err,idInscripciones)=>{
+        if(err)res.json(err)
+        db.query('SELECT idInscripcion,boleta FROM inscripcion',(err,boletas)=>{
+            if(err)res.json(err);
+            let auxBoletas = []
+            idInscripciones.forEach((id)=>{
+                boletas.forEach((boleta)=>{
+                    if(id.idInscripcion == boleta.idInscripcion){
+                        auxBoletas.push(boleta.boleta);
+                    }
+                });
+            });
+            db.query('SELECT boleta,nombre,app from alumno',(err,nombres)=>{
+                if(err)res.json(err)
+                alumnosDeHoy = [];
+                nombres.forEach((nombre)=>{
+                    auxBoletas.forEach((boleta)=>{
+                        if(nombre.boleta == boleta){
+                            //usamos el ingles para evitar confuciones en lo que es de aqui y lo que se manda
+                            alumnosDeHoy.push({bol:nombre.boleta, name:nombre.nombre, lastName:nombre.app});
+                        }
+                    });
+                });
+                res.json(alumnosDeHoy);
+            });
+        });
+    });
 });
 
 //esta ruta es solo para prueba para redireccionar

@@ -52,7 +52,7 @@ function mostrarAlumnos(alumnos){
 //para cuando el profesor presione en guardar
 let boletasDeInasistencia = [];
 function prepararBoletas(boleta){
-    if(boletasDeInasistencia.indexOf(boleta)!=-1){
+    if(boletasDeInasistencia.indexOf(boleta)==-1){
         boletasDeInasistencia.push(boleta);
     }else{
         eliminarBoletaDeInasistenciaLista(boleta);
@@ -97,5 +97,70 @@ function ventanaEmergente(titulo, relleno, icono){
         title:titulo,
         text:relleno,
         icon: icono
+    });
+}
+
+//Obtenemos los registros de asistencia de hoy para posibles modificacones
+function getInasistenciasHoy(){
+    const fecha = new Date();
+    let hoy = fecha.getFullYear()+'-'+(fecha.getMonth()+1)+'-'+fecha.getDate();
+    $.ajax({
+        url:'/getAlumnosToday',
+        type:'post',
+        data:{fecha:hoy},
+        success: function(response){
+            console.log(response)
+            mostrarAlumnosDeHoy(response);
+        },
+        error:function(response){
+            console.log(response);
+            alert(response);
+        }
+    });
+}
+
+function mostrarAlumnosDeHoy(alumnos){
+    let codigo = `<tr>
+                <td class="atxt white">
+                    Boleta
+                </td>
+                <td class="atxt white">
+                    Nombre
+                </td>
+                <td class="atxt white">
+                    Accion
+                </td>
+            </tr>`;
+    for(var i=0; i<alumnos.length; i++){
+        codigo += `
+        <tr>
+            <td class="atxt white">
+               `+alumnos[i].bol+` 
+            </td>   
+            <td class="atxt white">
+               `+alumnos[i].name+' '+alumnos[i].lastName+` 
+            </td>  
+            <td class="atxt white">
+                <input type="button" name="" value="Borrar" id="btn" onclick="eliminarInasistencia(`+alumnos[i].bol+`)" class="inputbutn int white">
+            </td>   
+        </tr>`;
+    }
+    $('#alumnosHoy').html(codigo);
+}
+
+function eliminarInasistencia(boleta){
+    $.ajax({
+        url:'/deleteInasIstencia',
+        type:'post',
+        data:{bol:boleta},
+        success: function(response){
+            console.log(response)
+            ventanaEmergente('Correcto',"Se ha eliminado de manera correcta la inasistencia",'success');
+            getInasistenciasHoy();
+        },
+        error:function(response){
+            console.log(response);
+            ventanaEmergente('Error',"Ha ocurrido un error inesperado",'error');
+        }
     });
 }

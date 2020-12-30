@@ -185,7 +185,7 @@
                                     Nombre
                                 </td>
                                 <td class="atxt white">
-                                    Asistencia
+                                    Inasistencia
                                 </td>
                             </tr>
 
@@ -226,13 +226,7 @@
                         </p>
                         </form>
 
-                        <form action="CRUDalumno" method="post">
-                            <input type="hidden" name="gr" value="">
-                            <input type="hidden" name="idpr" value="">
-                            <input type="hidden" name="materia" id="command2" value="null">
-                            <input type="hidden" name="instruction" value="getFalt">
-                            <input type="submit" name="delete" value="Revisar ultimo registro" id="btn" class="inputbutn int white">
-                        </form>
+                            <input type="button" name="delete" value="Revisar ultimo registro" id="btn" onclick="getInasistenciasHoy()" class="inputbutn int white">
                     </div>
 
                     <p class="atxt white">
@@ -242,7 +236,7 @@
                     <p class="atxt white">
                         Faltas del dia de hoy.
                     </p>
-                    <table>
+                    <table id="alumnosHoy">
                         <tr>
                             <td class="atxt white">
                                 Boleta
@@ -272,9 +266,8 @@
                         Insertar nueva falta.
                     </p>
                     <form action="CRUDalumno" method="post">
-                        <label for="bol">Numero de Boleta</label>
+                        <label for="bol">Numero de Boleta</label><br>
                         <input type="text" id="bol" name="boleta" class="inputtxt white"/>
-                        <input type="hidden" name="instruction" value="añadirFal">
                         <br>
                         <input type="submit" name="" value="Guardar" id="btn" class="inputbutn int white"/>
                     </form>

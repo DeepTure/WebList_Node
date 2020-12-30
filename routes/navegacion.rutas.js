@@ -42,6 +42,9 @@ router.post("/InicioSesionController", passport.authenticate('local',{
     failureRedirect: "/"
 }));
 
+
+//Esta parte pertenece a las rutas del home
+
 router.get("/home", (req,res,next)=>{
     if(req.isAuthenticated()) return next();
 
