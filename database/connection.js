@@ -6,6 +6,7 @@ const mysqlConnection = mysql.createConnection({
     user: "root",
     password: "n0m3l0",
     database: "weblist",
+    multipleStatements: true,
 });
 
 //se inicia la conexion
