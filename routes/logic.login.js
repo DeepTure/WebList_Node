@@ -26,9 +26,8 @@ passport.use(new Passportlocal({
         if (resul.length !=0){
             if (resul.length > 0){
                 const num= resul[0];
-                console.log(num.numEmpleado);
                 if(username === num.numEmpleado && password === num.contraseña){
-                    return done (null, {id: num.numEmpleado}); 
+                    return done (null, {rol: "profesor"}); 
                 }else{ 
                 done(null,false);
                 }
@@ -40,7 +39,7 @@ passport.use(new Passportlocal({
                     if (resula.length > 0){
                         const numa= resula[0];
                         if(username === numa.idAdmin.toString() && password === numa.contraseña){
-                            return done (null, {id: numa.idAdmin}); 
+                            return done (null, {rol: "administrador"}); 
                         }else{ 
                         done(null,false);
                         }
@@ -51,9 +50,8 @@ passport.use(new Passportlocal({
                         if (resulb != 0){
                             if (resulb.length > 0){
                                 const num= resulb[0];
-                                console.log(num.boleta);
                                 if(username ===num.boleta.toString() && password === num.contraseña){
-                                    return done (null, {id: num.boleta}); 
+                                    return done (null, {rol: "alumno"}); 
                                 }else{ 
                                 done(null,false);
                                 }
@@ -73,27 +71,29 @@ passport.use(new Passportlocal({
 }));
 
 passport.serializeUser(function(user,done){
-    done(null,user.id);
+    done(null,user.rol);
 });
 
 passport.deserializeUser(function(id,done){
-    done(null, {id:1, name: "Leonidas"});
+    done(null, {rol:"prof"});
 });
 
-router.post("/InicioSesionController", passport.authenticate('local',{
-    successRedirect:"/home",
-    failureRedirect: "/"
-}));
+//Preparado para redireccionar a las vistas correspondientes dependiendo el rol
+router.post("/InicioSesionController", passport.authenticate('local'),function(req, res){
+    if(req.user.rol== "profesor"){
+        res.redirect('/home');
+    }else if(req.user.rol== "administrador"){
+        res.redirect('/home');
+    }else if(req.user.rol== "alumno"){
+        res.redirect('/home');
+    }
+});
 
 router.get("/home", (req,res,next)=>{
     if(req.isAuthenticated()) return next();
-
-
     res.redirect("/");
 },(req,res)=>{
-
     return res.render('Home',{});
-    
 });
 
 module.exports = router;
