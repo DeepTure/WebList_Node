@@ -140,7 +140,39 @@
             <p class="space">
                 <br>
             </p>
-
+            <% if(alumno.length > 0){ %>
+            <div>
+                <table id="alumnosDeGrupo">
+                    <tr>
+                        <td class="atxt white">
+                            Boleta
+                        </td>
+                        <td class="atxt white">    
+                            Nombre
+                        </td>
+                        <td class="atxt white">
+                            
+                        </td>
+                    </tr>
+                    <% for(var i=0; i < alumno.length; i++){ %>
+                        <tr>
+                            <td class="atxt white">
+                                <%= alumno[i].boleta %>
+                            </td>
+                            <td class="atxt white">
+                                <%= alumno[i].nombre%>
+                            </td>
+                            <td>
+                                <a href="#"  class="g8">Eliminar</a>
+                            </td>
+                        </tr>
+                    <% } %>
+                </table>
+                <p class="space">
+                    <br>
+                </p>
+            </div>
+            <% } %>
             <!-- este es el formulario para los alumnos -->
             <form id="alumno" method="post" action="CRUDalumno">
                 <p class="atxt white">
@@ -189,14 +221,6 @@
                 <p class="space">
                     <br>    
                 </p>
-                <p class="atxt white">
-                    <input type="radio" style="width: 5%; height: 1vw;" name="election" class="delete" value="delete" onclick="">
-                    Eliminar
-                </p>
-                <p class="space">
-                    <br>
-                    <br>    
-                </p>
                 <input type="submit" value="Ejecutar acciones" class="inputbutn int white">
             </form>
             <p class="space">
@@ -211,10 +235,7 @@
                 <br>
             </p>
             <div>
-                <p class="atxt white">
-                    Lista actual: 
-                </p>
-
+                <% if(profesor.length > 0){ %>
                 <div>
                     <table id="alumnosDeGrupo">
                         <tr>
@@ -225,38 +246,28 @@
                                 Nombre
                             </td>
                             <td class="atxt white">
-                                Eliminar
+                                
                             </td>
                         </tr>
-
+                        <% for(var i=0; i < profesor.length; i++){ %>
                             <tr>
                                 <td class="atxt white">
-                                    Boleta
+                                    <%= profesor[i].numEmpleado %>
                                 </td>
                                 <td class="atxt white">
-                                    Nombre
+                                    <%= profesor[i].nombre %>
                                 </td>
                                 <td>
                                     <a href="#"  class="g8">Eliminar</a>
                                 </td>
                             </tr>
-
-                        <tr>
-                            <td class="atxt white">
-                                215
-                            </td>
-                            <td class="atxt white">
-                                juan
-                            </td>
-                            <td>
-                                <input type="checkbox" style="width: 5%; height: 1vw;">
-                            </td>
-                        </tr>
+                        <% } %>
                     </table>
                     <p class="space">
                         <br>
                     </p>
                 </div>
+                <% } %>
             <form action="CRUDprofesor" method="post">
                 <p class="atxt white">
                     Numero de empleado: <input type="number" name="nempleado" class="inputtxt white">
@@ -317,14 +328,6 @@
                     Guardar cambios
                 </p>
                 <p class="space">
-                    <br>
-                </p>
-                <p class="atxt white">
-                    <input type="radio" style="width: 5%; height: 1vw;" name="election" class="delete2" value="delete" onclick="">
-                    Eliminar
-                </p>
-                <p class="space">
-                    <br>
                     <br>
                 </p>
                 <input type="submit" value="Ejecutar acciones" class="inputbutn int white">

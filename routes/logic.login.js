@@ -100,7 +100,18 @@ router.get(
         res.redirect("/");
     },
     (req, res) => {
-        return res.render("Homeadmin", {});
+        db.query("select * from profesor;"+"select * from alumno", (err, resul) => {
+            if (err) {
+                console.log(err);
+            } else {
+                return res.render("Homeadmin", {
+                    profesor: resul[0],
+                    alumno: resul[1],
+                });
+            }
+        });
     }
 );
+
+
 module.exports = router;
