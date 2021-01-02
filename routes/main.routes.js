@@ -10,7 +10,12 @@ const db = require("../database/connection");
 
 //router simple
 router.get("/", (req, res) => {
-    return res.render("Login",{});
+    return res.render("Login", { err: req.flash("error") });
+});
+
+//ruta a Help
+router.get("/help", (req, res) => {
+    return res.render("Help", {});
 });
 
 /*
@@ -28,22 +33,24 @@ su uso es completamente opcional
 */
 
 //router con parametros
+/*
 router.get("/info:dato", (req, res) => {
     return res.send(req.params.dato);
-    /*
+    
     el nombre del paramentro comienza a partir de los dos puntos (:)
     tambien se puede utilizar como
     '/info:dato' o '/info/:dato'
     si mandamos a llamar a la ruta '/info:dato'
     despues de 'info' todo lo demas se convierte en el parametro
     exceptuando el caracter slash '/' el cual ya cambia la ruta por completo
-    */
+    
 });
-
+*/
 //router con una query en url
+/*
 router.get("/datos", (req, res) => {
     return res.send(req.query.dato);
-    /*
+    
     La query es un poco mas compleja que el parametro pero
     funciona casi de la misma forma solo que la url es distinta
     el usario llama a una ruta '/datos?dato=maria'
@@ -51,8 +58,9 @@ router.get("/datos", (req, res) => {
     se pueden anidar mutiples queries de la siguiente manera
     /datos?nombre=maria&apellido=cordoba
     el caracter '&' diferencia entre cada query
-    */
+    
 });
+*/
 
 /*
 Cuando accedan a datos como

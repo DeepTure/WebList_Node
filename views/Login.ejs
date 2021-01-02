@@ -1,24 +1,52 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>
-            WebList
-        </title>
+        <title>WebList</title>
         <link rel="shortcut icon" href="/public/Img/DeepTureL.ico" />
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: no-preference)" href="/public/CSS/RespL.css">
-        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: no-preference)" href="/public/FuenteL.css">
+        <meta charset="utf-8" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: no-preference)"
+            href="/public/CSS/RespL.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: no-preference)"
+            href="/public/FuenteL.css"
+        />
 
-        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: dark)" href="/public/CSS/RespD.css">
-        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: light)" href="/public/CSS/RespL.css">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: dark)"
+            href="/public/CSS/RespD.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: light)"
+            href="/public/CSS/RespL.css"
+        />
 
-        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: dark)" href="/public/CSS/FuenteD.css">
-        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: light)" href="/public/CSS/FuenteL.css">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: dark)"
+            href="/public/CSS/FuenteD.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: light)"
+            href="/public/CSS/FuenteL.css"
+        />
 
         <style type="text/css">
-            .bg-img{
+            .bg-img {
                 margin: 0;
-                background-image: url('/public/Img/BackgroundD.png');
+                background-image: url("/public/Img/BackgroundD.png");
                 background-size: 100%;
                 background-repeat: no-repeat;
                 background-position: 0 0;
@@ -26,8 +54,8 @@
                 background-size: cover;
                 transition: background 1s;
             }
-            .fg-img{
-                background-image: url('/public/Img/ForegroundD.png');
+            .fg-img {
+                background-image: url("/public/Img/ForegroundD.png");
                 background-size: 100%;
                 background-repeat: no-repeat;
                 background-position: 0 0;
@@ -36,15 +64,15 @@
                 transition: background 1s;
             }
 
-            .logo{
-                background-image: url('/public/Img/DeepTureD.png');
+            .logo {
+                background-image: url("/public/Img/DeepTureD.png");
                 background-size: 100%;
                 background-size: cover;
                 transition: background 1s;
             }
 
-            .logoHelp{
-                background-image: url('/public/Img/HelpL.png');
+            .logoHelp {
+                background-image: url("/public/Img/HelpL.png");
                 background-size: 70%;
                 background-repeat: no-repeat;
                 background-position: 50% 0;
@@ -52,22 +80,22 @@
             }
 
             @media screen and (prefers-color-scheme: light) {
-                .bg-img{
-                    background-image: url('/public/Img/BackgroundL.png');
+                .bg-img {
+                    background-image: url("/public/Img/BackgroundL.png");
                     transition: background 1s;
                 }
-                .fg-img{
-                    background-image: url('/public/Img/ForegroundLHelp.png');
+                .fg-img {
+                    background-image: url("/public/Img/ForegroundLHelp.png");
                     transition: background 1s;
                 }
-                @media screen and (orientation: landscape){
-                    .fg-img{
-                        background-image: url('/public/Img/ForegroundL.png');
+                @media screen and (orientation: landscape) {
+                    .fg-img {
+                        background-image: url("/public/Img/ForegroundL.png");
                         transition: background 1s;
                     }
                 }
-                .logo{
-                    background-image: url('/public/Img/DeepTureL.png');
+                .logo {
+                    background-image: url("/public/Img/DeepTureL.png");
                     transition: background 1s;
                 }
             }
@@ -75,74 +103,90 @@
     </head>
     <body link="Black" vlink="Black" alink="Black" class="bg-img">
         <nav>
-            <article class="ImgicoLog logo">
-
-            </article>
+            <article class="ImgicoLog logo"></article>
         </nav>
 
         <div class="block start fg-img">
             <div class="space">
-                <br>
-            </div>	
+                <br />
+            </div>
 
-            <a href="Help.jsp" class="InitHelp">
+            <a href="/help" class="InitHelp">
                 <aside class="logoHelp white">
                     <div class="space">
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
                     </div>
-                    <div class="atxt white">
-                        Ayuda
-                    </div>
+                    <div class="atxt white">Ayuda</div>
                 </aside>
             </a>
 
-            <div class="title white">
-                Iniciar sesi&oacute;n
-            </div>
+            <div class="title white">Iniciar sesi&oacute;n</div>
 
             <div class="space">
-                <br>
+                <br />
             </div>
-
+            <% if (err) { %>
+            <div class="title white"><%= err %></div>
+            <div class="space">
+                <br />
+            </div>
+            <% } %>
             <div>
                 <form method="post" id="LogIn" action="/InicioSesionController">
-                    <p class="subtitle white">
-                        Usuario
-                    </p>
+                    <p class="subtitle white">Usuario</p>
                     <div class="space">
-                        <br>
+                        <br />
                     </div>
-                    <input type="text" id="Account" class="inputtxt white" name="username">
+                    <input
+                        type="text"
+                        id="Account"
+                        class="inputtxt white"
+                        name="username"
+                    />
                     <div class="space">
-                        <br>
-                        <br>
-                        <br>
+                        <br />
+                        <br />
+                        <br />
                     </div>
-                    <p class="subtitle white">
-                        Contrase&ntilde;a
-                    </p>
+                    <p class="subtitle white">Contrase&ntilde;a</p>
                     <div class="space">
-                        <br>
+                        <br />
                     </div>
-                    <input type="password" id="Password" class="inputtxt white" name="password">
+                    <input
+                        type="password"
+                        id="Password"
+                        class="inputtxt white"
+                        name="password"
+                    />
                     <div class="space">
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                    </div><!-- Cuando tenga funcion este boton se convierte en submit-->
-                    <input type="submit" id="Login" value="Inicia sesi&oacute;n" class="inputbutn int white">
-                    <div class="space">
-                        <br>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
                     </div>
-                    <input type="button" id="Recover" value="Recuperar cuenta" class="inputbutn int white" onclick="location.href = 'Recover.jsp'">
+                    <!-- Cuando tenga funcion este boton se convierte en submit-->
+                    <input
+                        type="submit"
+                        id="Login"
+                        value="Inicia sesi&oacute;n"
+                        class="inputbutn int white"
+                    />
+                    <div class="space">
+                        <br />
+                    </div>
+                    <input
+                        type="button"
+                        id="Recover"
+                        value="Recuperar cuenta"
+                        class="inputbutn int white"
+                        onclick="location.href = 'Recover.jsp'"
+                    />
                 </form>
-            </div>	
+            </div>
         </div>
     </body>
 </html>
-
