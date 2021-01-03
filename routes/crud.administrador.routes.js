@@ -17,11 +17,11 @@ router.get("[aqui va la direccion]", (req, res) => {
 });
 
 //Funcion nuevoAdmin
-router.post("[nombre del formulario]", (req, res) => {
+router.post("adminControllerCreate", (req, res) => {
     //Recopilamos los datos del formulario
     var { idAdmin, nombre, contraseña, correo } = req.body;
     //Establecemos la sentencia sql para guardarlos en la bd
-    db.query("insert into Admin set?",{
+    db.query("insert into administrador set idAdmin=?, nombre=?, contraseña=?, correo=?",{
         idAdmin,
         nombre,
         contraseña,
@@ -31,29 +31,49 @@ router.post("[nombre del formulario]", (req, res) => {
             if (err) {
                 console.log(err);
             } else {
-                //direcciónar a la pagina si se hizo bien el proceso
-                return res.redirect("[aqui la direccion]");
+                console.log("Se realizo correctamente la creacion de una cuenta administradora");
+                return res.redirect("/homeadmin");
             }
         }
     );
 });
 
-//Funcion ModificarAdmin
-router.post("[nombre del formulario]", (req, res) => {
+//Funcion modificarAdminContraseña
+router.post("adminControllerPassword", (req, res) => {
     //Recopilamos los datos del formulario
-    var { idAdmin, nombre, contraseña, correo } = req.body;
-    //lo guardamos en modificar
-    var modificacion = { nombre, contraseña, correo };
+    var { idAdmin, contraseña} = req.body;
     //Establecemos la sentencia sql para Modificar la bd
-    db.query("update Admin set? where idAdmin=?",[
-        modificacion, 
+    db.query("update administrador set contraseña=? where idAdmin=?",[
+        contraseña, 
+        idAdmin
+        ],(err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log("Se realizo correctamente el cambio de contraseña");
+                return res.redirect("/homeadmin");
+            }
+        }
+    );
+});
+
+//Funcion modificarAdminElementos
+router.post("adminControllerElementos", (req, res) => {
+    //Recopilamos los datos del formulario
+    var { idAdmin, nombre, correo} = req.body;
+    //Establecemos la sentencia sql para Modificar la bd
+    db.query("update administrador set correo=?, nombre=? where idAdmin=?",[
+        correo,
+        nombre, 
         idAdmin
         ],(err, result) => {
             if (err) {
                 console.log(err);
             } else {
                 //direcciónar a la pagina si se hizo bien el proceso
-                return res.redirect("[aqui la direccion]");
+                console.log("Se realizo correctamente el cambio de correo y nombre");
+                return res.redirect("/homeadmin") ;
+                
             }
         }
     );

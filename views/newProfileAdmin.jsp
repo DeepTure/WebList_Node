@@ -88,7 +88,7 @@
     <body link="Black" vlink="Black" alink="Black" class="bg-img">
         <nav>
             <p class="tittle">
-                Mi Perfil
+                Nuevo Perfil
             </p>
             <p class="space">
                 <br>
@@ -103,7 +103,7 @@
                 <br>
             </div>
             <div class="title white" style="text-align: left; margin-left: 1.5rem;">
-                Cambiar contraseña
+                Nuevo administrador
             </div>
             <div class="space">
                 <br>
@@ -114,47 +114,30 @@
             <div class="space">
                 <br>
             </div>
-            <div>
-                <form method="post" id="password" style="text-align: left;" action="adminControllerPassword">
-                    <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                        Nueva contraseña
-                    </p>
-                    <div class="space">
-                        <br>
-                    </div>
-                    <input type="hidden" name="instruction" value="changePassword">
-                    <input type="password" id="pass1" class="inputtxt" name="pass" style="margin-left: 1.5rem;">
-                    <div class="space">
-                        <br>
-                    </div>
-                    <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                        Confirmar contraseña
-                    </p>
-                    <div class="space">
-                        <br>
-                    </div>
-                    <input type="password" id="pass2" class="inputtxt" name="pass2" style="margin-left: 1.5rem;">
-                    <div class="space">
-                        <br>
-                    </div>
-                    <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                        Ingrese su numero de empleado
-                    </p><br>
-                    <input type="text" id="pass2" class="inputtxt" name="id" style="margin-left: 1.5rem;">
-                    <div class="space">
-                        <br>
-                    </div>
-                    <input type="submit" id="Login" value="Enviar" class="inputbutn int" style="margin-left: 1.5rem;">
-                </form>
-                <p class="space">
-                    <br>
-                    <br>
-                    <br>
-                </p>
-            </div>
-            <form method="post" id="password" style="text-align: left;" action="adminControllerElementos">
+            <form method="post" id="password" style="text-align: left;" action="adminControllerCreate">
                 <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                    Modificar Correo
+                    Contraseña
+                </p>
+                <div class="space">
+                    <br>
+                </div>
+                <input type="hidden" name="instruction" value="changePassword">
+                <input type="password" id="pass1" class="inputtxt" name="pass" style="margin-left: 1.5rem;">
+                <div class="space">
+                    <br>
+                </div>
+                <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
+                    Confirmar contraseña
+                </p>
+                <div class="space">
+                    <br>
+                </div>
+                <input type="password" id="pass2" class="inputtxt" name="pass2" style="margin-left: 1.5rem;">
+                <div class="space">
+                    <br>
+                </div>
+                <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
+                    Correo
                 </p>
                 <div class="space">
                     <br>
@@ -165,7 +148,7 @@
                     <br>
                 </div>
                 <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                    Modificar Nombre
+                    Nombre
                 </p>
                 <div class="space">
                     <br>
@@ -176,16 +159,13 @@
                     <br>
                 </div>
                 <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                    Ingrese su numero de empleado
-                </p>
+                    Ingrese el numero de empleado
+                </p><br>
+                <input type="text" id="pass2" class="inputtxt" name="id" style="margin-left: 1.5rem;">
                 <div class="space">
                     <br>
                 </div>
-                <input type="text" id="email" class="inputtxt" name="id" style="margin-left: 1.5rem;">>
-                <div class="space">
-                    <br>
-                </div>
-                <input type="submit" id="Send" value="Enviar" class="inputbutn int" style="margin-left: 1.5rem;">
+                <input type="submit" id="Login" value="Enviar" class="inputbutn int" style="margin-left: 1.5rem;">
             </form>
         </div>
     </div>
