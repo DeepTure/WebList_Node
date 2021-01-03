@@ -78,9 +78,8 @@ router.get(
     },
     (req, res) => {
         db.query(
-            "select * from inasistencia;",
+            "select * from inasistencia where idInscripcion like '%?%';",[Number(req.user.id)],
             (err, resul) => {
-                
                 if (err) {
                     console.log (err);
                 } else {
