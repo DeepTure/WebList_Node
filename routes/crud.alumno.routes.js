@@ -75,105 +75,61 @@ router.get("/datos", (req, res) => {
         */
 });
 
-
 const router = require("express").Router();
 const db = require("../database/connection");
 
-//url de los alumnos
+//Funcion mostraralumno
 router.get("[aqui va la direccion]", (req, res) => {
-    //Se realiza la consulta
-    db.query("select * from alumnos", (err, resul) => {
+    //Se realiza la consulta mediante la tabla alumno
+    db.query("select * from Alumno", (err, resul) => {
         //en caso de que ocurra error
         if (err) {
             console.log(err);
         } else {
-            //Pase de parametros al url y mostrarlos en la página
-            return res.render("[aqui va la dirección]", {
-                profesores: resul,
-            });
+            //Pase de parametros al url y renderizamos la página
+            return res.render("[aqui va la dirección]", { alumno: resul,});
         }
     });
 });
-//Funcion de añadir alumno con el formulario
-router.post("[nombre del formulario]", (req, res) => {
-    //guardamos los datos que recibimos de la vista
-    var { boleta, nombre, app, apm, correo, contraseña } = req.body;
-    //Sentencia sql
-    db.query(
-        "insert into Profesores set ?",
-        {
-            boleta,
-            nombre,
-            app,
-            apm,
-            correo,
-            contraseña,
-        },
-        (err, result) => {
+
+//Funcion modificarAdminContraseña
+router.post("alumnoControllerPassword", (req, res) => {
+    //Recopilamos los datos del formulario
+    var { boleta, contraseña} = req.body;
+    //Establecemos la sentencia sql para Modificar la bd
+    db.query("update alumno set contraseña=? where boleta=?",[
+        contraseña, 
+        boleta
+        ],(err, result) => {
             if (err) {
                 console.log(err);
             } else {
-                //direcciónar a la pagina si el proceso fue correcto
-                return res.redirect("[aqui va la direccion]");
+                console.log("Se realizo correctamente el cambio de contraseña");
+                return res.redirect("/homealumno");
             }
         }
     );
 });
 
-//Funcion de modificar todos los datos de un alumno mediante la boleta
-router.post("[nombre del formulario]", (req, res) => {
-    //datos que se reciben  de la vista
-    var { boleta, nombre, app, apm, correo, contraseña } = req.body;
-    var modificacion = { nombre, app, apm, contraseña, correo };
-    //Sentencia sql
-    db.query(
-        "update alumnos set? where boleta=?",
-        [modificacion, boleta],
-        (err, result) => {
+//Funcion modificarAdminElementos
+router.post("alumnoControllerElementos", (req, res) => {
+    //Recopilamos los datos del formulario
+    var { boleta, nombre, correo} = req.body;
+    //Establecemos la sentencia sql para Modificar la bd
+    db.query("update alumno set correo=?, nombre=? where boleta=?",[
+        correo,
+        nombre, 
+        boleta
+        ],(err, result) => {
             if (err) {
                 console.log(err);
             } else {
-                //direcciónar a la pagina si el proceso fue correcto
-                return res.redirect("[aqui va la direccion]");
+                //direcciónar a la pagina si se hizo bien el proceso
+                console.log("Se realizo correctamente el cambio de correo y nombre");
+                return res.redirect("/homealumno") ;
+                
             }
         }
     );
 });
-
-//Eliminar a un alumno 
-router.get("/eliminar/:boleta", (req, res) => {
-    var { boleta } = req.params;
-    conexion.query(
-        "delete from alumnos where boleta= ?",
-        [boleta],
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                //direcciónar a la pagina si el proceso fue correcto
-                return res.redirect("[aqui va la direccion]");
-            }
-        }
-    );
-});
-
-//Eliminar alumno mediante formulario
-router.post("[nombre del formulario]", (req, res) => {
-    //guardamos los datos que recibimos de la vista
-    var { boleta } = req.body;
-    //Sentencia sql
-    db.query(
-        "delete from Profesores where boleta= ?",
-        [boleta],
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                //direcciónar a la pagina si el proceso fue correcto
-                res.redirect("[aqui va la direccion]");
-            }
-        }
-    );
-});
-
 module.exports = router;
