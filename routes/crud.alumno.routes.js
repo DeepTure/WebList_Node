@@ -75,8 +75,6 @@ router.get("/datos", (req, res) => {
         */
 });
 
-const router = require("express").Router();
-const db = require("../database/connection");
 
 //Funcion mostraralumno
 router.get("[aqui va la direccion]", (req, res) => {

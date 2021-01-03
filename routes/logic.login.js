@@ -19,7 +19,7 @@ router.post(
             } else if (req.user.rol == "administrador") {
                 return res.redirect("/homeadmin");
             } else if (req.user.rol == "alumno") {
-                return res.redirect("/home");
+                return res.redirect("/homealumno");
             }
         });
     }
@@ -80,11 +80,12 @@ router.get(
         db.query(
             "select * from inasistencia;",
             (err, resul) => {
+                
                 if (err) {
-                    console.log (resul[0]);
+                    console.log (err);
                 } else {
                     return res.render("Homealumno", {
-                        inasistencia: resul[0],
+                        inasistencia: resul,
                     });
                 }
             }
