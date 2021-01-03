@@ -104,7 +104,10 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (user, done) {
-    done(null, [user.rol, user.id]);
+    done(null, {
+        rol: user[0],
+        id: user[1],
+    });
 });
 
 //para acceder a archivos estaticos

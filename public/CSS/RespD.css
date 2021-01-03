@@ -1,201 +1,208 @@
 /* WebListProject BloodyMoon CSS */
 
-.inputbutn.int:hover{
-	background: white;
-	color: black;
-	width: 15%;
+.inputbutn.int:disabled {
+    color: rgb(68, 68, 68);
+    width: 15%;
 }
 
-.inputbutn.nav:hover{
-	background: white;
-	width: 15%;
+.inputbutn.int:hover {
+    background: white;
+    color: black;
+    width: 15%;
+}
+
+.inputbutn.nav:hover {
+    background: white;
+    width: 15%;
 }
 
 /* Portrait devices */
-nav{
-	background-color: rgb(0, 0, 0);
-	width: 91.8%;
-	height: 40vw;
-	padding: 2.1%;
-	margin-left: 2.1%;
-	margin-top: 2.1%;
-	text-align: center;
-	overflow: auto;
+nav {
+    background-color: rgb(0, 0, 0);
+    width: 91.8%;
+    height: 40vw;
+    padding: 2.1%;
+    margin-left: 2.1%;
+    margin-top: 2.1%;
+    text-align: center;
+    overflow: auto;
 }
-aside{
-	width: 10%;
-	height: 14.1%;
-	display: inline-block;
-	text-align: center;
+aside {
+    width: 10%;
+    height: 14.1%;
+    display: inline-block;
+    text-align: center;
 }
-option{
-	background-color: black;
-	color: white;
-	width: 15%;
+option {
+    background-color: black;
+    color: white;
+    width: 15%;
 }
-.InitHelp{
-	margin-left: 86%;
+.InitHelp {
+    margin-left: 86%;
 }
-.asidMin{
-	width: 5%;
-	height: 10%;
-	text-align: center;
-	display: inline-block;
+.asidMin {
+    width: 5%;
+    height: 10%;
+    text-align: center;
+    display: inline-block;
 }
-.ImgicoMin{
-	width: 100%;
-	height: 100%;
+.ImgicoMin {
+    width: 100%;
+    height: 100%;
 }
-.inputtxt{
-	background: none;
-	color: white;
-	width: 15%;
+.inputtxt {
+    background: none;
+    color: white;
+    width: 15%;
 }
-.inputbutn{
-	background: none;
-	color: white;
-	width: 15%;
-	text-align: center;
-	transition: background 1.2s, color 1.2s;
+.inputbutn {
+    background: none;
+    color: white;
+    width: 15%;
+    text-align: center;
+    transition: background 1.2s, color 1.2s;
 }
-.blockAn{
-	display: inline-block;
-	margin-left: 2.1%;
-	margin-bottom: 2.1%;
-	width: 94%;
-	padding-left: 2%;
-	height: 72vw; 
-	background-color: none;
-	text-align: left;
-	overflow: auto;
+.blockAn {
+    display: inline-block;
+    margin-left: 2.1%;
+    margin-bottom: 2.1%;
+    width: 94%;
+    padding-left: 2%;
+    height: 72vw;
+    background-color: none;
+    text-align: left;
+    overflow: auto;
 }
-.block.start{
-	display: inline-block;
-	margin-left: 2.1%;
-	margin-bottom: 2.1%;
-	width: 96%;
-	height: 72vw; 
-	background-color: none;
-	text-align: center;
-	overflow: auto;
+.block.start {
+    display: inline-block;
+    margin-left: 2.1%;
+    margin-bottom: 2.1%;
+    width: 96%;
+    height: 72vw;
+    background-color: none;
+    text-align: center;
+    overflow: auto;
 }
-.Imgico{
-	width: 70%;
-	height: 50%;
+.Imgico {
+    width: 70%;
+    height: 50%;
 }
-.ImgicoLog{
-	width: 40%;
-	height: 90%;
-	margin-left: 30%;
+.ImgicoLog {
+    width: 40%;
+    height: 90%;
+    margin-left: 30%;
 }
-table{
+table {
     width: 100%;
     border: none;
 }
-td,tr,th{
+td,
+tr,
+th {
     text-align: center;
     border-bottom: 0.3vw solid white;
 }
 
 /* Landscape devices */
 @media screen and (orientation: landscape) {
-	nav{
-		display: inline-block;
-		width: 10.4%;
-		height: 46.75vw;
-		padding: 2.1%;
-		margin-left: 2.1%;
-		margin-top: 2.1%;
-		text-align: center;
-		overflow: auto;
-	}
-	aside{
-		width: 7.8%;
-		height: 12.1%;
-		display: inline-block;
-		text-align: center;
-	}
-	.InitHelp{
-		margin-left: 88%;
-	}
-	.asidMin{
-		width: 25%;
-		height: 5%;
-		text-align: center;
-		display: inline-block;
-	}
-	.ImgicoMin{
-		width: 100%;
-		height: 100%;
-	}
-	.inputtxt{
-		background: none;
-		color: white;
-		width: 15%;
-	}
-	.inputbutn{
-		background: none;
-		color: white;
-		width: 15%;
-		text-align: center;
-		transition: background 1.2s, color 1.2s;
-	}
-	.inputtxt.nav{
-		background: none;
-		color: white;
-		width: 100%;
-	}
-	.inputbutn.nav{
-		background: none;
-		color: white;
-		width: 100%;
-		text-align: center;
-		transition: background 1.2s, color 1.2s;
-	}
-	.blockAn{
-		display: inline-block;
-		position: absolute;
-		margin-top: 2.1%; 
-		margin-bottom: 2.1%;
-		margin-left: 0%;
-		width: 79%;
-		padding-left: 2%;
-		height: 51vw; 
-		background-color: none;
-		text-align: left;
-		overflow: auto;
-	}
-	.block.start{
-		display: inline-block;
-		position: absolute;
-		margin-top: 2.1%; 
-		margin-bottom: 2.1%;
-		margin-left: 0%;
-		width: 81%;
-		height: 51vw; 
-		background-color: none;
-		text-align: center;
-		overflow: auto;
-	}
-	.Imgico{
-		width: 50%;
-		height: 50%;
-	}
-	.ImgicoLog{
-		margin-top: 180%;
-		margin-left: 0;  
-		width: 100%;
-		height: 22.333%;
-	}
-	.padd{
-		margin-top: 70%;
-	}
-	.inputbutn.nav:hover{
-		background: white;
-		width: 100%;
-	}
-        .cbx{
-            width: 100%;
-            height: 50vw;
-        }
+    nav {
+        display: inline-block;
+        width: 10.4%;
+        height: 46.75vw;
+        padding: 2.1%;
+        margin-left: 2.1%;
+        margin-top: 2.1%;
+        text-align: center;
+        overflow: auto;
+    }
+    aside {
+        width: 7.8%;
+        height: 12.1%;
+        display: inline-block;
+        text-align: center;
+    }
+    .InitHelp {
+        margin-left: 88%;
+    }
+    .asidMin {
+        width: 25%;
+        height: 5%;
+        text-align: center;
+        display: inline-block;
+    }
+    .ImgicoMin {
+        width: 100%;
+        height: 100%;
+    }
+    .inputtxt {
+        background: none;
+        color: white;
+        width: 15%;
+    }
+    .inputbutn {
+        background: none;
+        color: white;
+        width: 15%;
+        text-align: center;
+        transition: background 1.2s, color 1.2s;
+    }
+    .inputtxt.nav {
+        background: none;
+        color: white;
+        width: 100%;
+    }
+    .inputbutn.nav {
+        background: none;
+        color: white;
+        width: 100%;
+        text-align: center;
+        transition: background 1.2s, color 1.2s;
+    }
+    .blockAn {
+        display: inline-block;
+        position: absolute;
+        margin-top: 2.1%;
+        margin-bottom: 2.1%;
+        margin-left: 0%;
+        width: 79%;
+        padding-left: 2%;
+        height: 51vw;
+        background-color: none;
+        text-align: left;
+        overflow: auto;
+    }
+    .block.start {
+        display: inline-block;
+        position: absolute;
+        margin-top: 2.1%;
+        margin-bottom: 2.1%;
+        margin-left: 0%;
+        width: 81%;
+        height: 51vw;
+        background-color: none;
+        text-align: center;
+        overflow: auto;
+    }
+    .Imgico {
+        width: 50%;
+        height: 50%;
+    }
+    .ImgicoLog {
+        margin-top: 180%;
+        margin-left: 0;
+        width: 100%;
+        height: 22.333%;
+    }
+    .padd {
+        margin-top: 70%;
+    }
+    .inputbutn.nav:hover {
+        background: white;
+        width: 100%;
+    }
+    .cbx {
+        width: 100%;
+        height: 50vw;
+    }
 }

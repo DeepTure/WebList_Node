@@ -1,74 +1,74 @@
-*{
+* {
     font-family: Arial;
     color: white;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-aside{
+aside {
     border: 0.1vw solid white;
 }
-.asidMin{
+.asidMin {
     border: 0.1vw solid white;
 }
-.title{
+.title {
     font-size: 2vw;
 }
-.subtitle{
+.subtitle {
     font-size: 1.2vw;
 }
-.space{
-    font-size: 0.7vw;	
+.space {
+    font-size: 0.7vw;
 }
-.inputtxt{
+.inputtxt {
     border: 0.1vw solid white;
     border-radius: 0.5vw;
     font-size: 1vw;
 }
-.inputbutn{
+.inputbutn {
     border: 0.1vw solid white;
     border-radius: 0.5vw;
     font-size: 1vw;
 }
-.atxt{
+.atxt {
     font-size: 1.2vw;
 }
 
-aside.white{
+aside.white {
     color: white;
     border: 0.1vw solid white;
 }
-.asidMin.white{
+.asidMin.white {
     color: white;
     border: 0.1vw solid white;
 }
-.title.white{
+.title.white {
     color: white;
     font-size: 2vw;
 }
-.subtitle.white{
+.subtitle.white {
     color: white;
     font-size: 1.2vw;
 }
-.space.white{
+.space.white {
     color: white;
-    font-size: 0.7vw;	
+    font-size: 0.7vw;
 }
-.inputtxt.white{
-    color: white;
-    border: 0.1vw solid white;
-    border-radius: 0.5vw;
-    font-size: 1vw;
-}
-.inputbutn.white{
+.inputtxt.white {
     color: white;
     border: 0.1vw solid white;
     border-radius: 0.5vw;
     font-size: 1vw;
 }
-.atxt.white{
+.inputbutn.white {
+    color: white;
+    border: 0.1vw solid white;
+    border-radius: 0.5vw;
+    font-size: 1vw;
+}
+.atxt.white {
     color: white;
     font-size: 1.2vw;
 }

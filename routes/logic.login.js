@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const passport = require("passport");
+const db = require("../database/connection");
 
 //Preparado para redireccionar a las vistas correspondientes dependiendo el rol
 router.post(
@@ -9,24 +10,40 @@ router.post(
         failureFlash: true,
     }),
     function (req, res) {
-        if (req.user.rol == "profesor") {
-            res.redirect("/home");
-        } else if (req.user.rol == "administrador") {
-            res.redirect("/homeadmin");
-        } else if (req.user.rol == "alumno") {
-            res.redirect("/home");
-        }
+        req.session.save((err) => {
+            if (err) {
+                return res.json(err);
+            }
+            if (req.user.rol == "profesor") {
+                return res.redirect("/homeprof");
+            } else if (req.user.rol == "administrador") {
+                return res.redirect("/homeadmin");
+            } else if (req.user.rol == "alumno") {
+                return res.redirect("/home");
+            }
+        });
     }
 );
 
+router.get("/logout", (req, res) => {
+    req.logout();
+    req.session.save((err) => {
+        if (err) {
+            return res.json(err);
+        }
+        return res.redirect("/");
+    });
+});
+
 router.get(
-    "/home",
+    "/homeprof",
     (req, res, next) => {
         if (req.isAuthenticated()) return next();
         res.redirect("/");
     },
     (req, res) => {
-        return res.render("Home", {});
+        console.log(req.user);
+        return res.render("Homeprof", {});
     }
 );
 
@@ -38,7 +55,7 @@ router.get(
     },
     (req, res) => {
         db.query(
-            "select * from profesor;" + "select * from alumno",
+            "select * from profesor;" + "select * from alumno;",
             (err, resul) => {
                 if (err) {
                     console.log(err);
