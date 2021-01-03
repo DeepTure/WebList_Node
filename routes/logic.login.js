@@ -70,4 +70,26 @@ router.get(
     }
 );
 
+router.get(
+    "/homealumno",
+    (req, res, next) => {
+        if (req.isAuthenticated()) return next();
+        res.redirect("/");
+    },
+    (req, res) => {
+        db.query(
+            "select * from inasistencia;",
+            (err, resul) => {
+                if (err) {
+                    console.log (resul[0]);
+                } else {
+                    return res.render("Homealumno", {
+                        inasistencia: resul[0],
+                    });
+                }
+            }
+        );
+    }
+);
+
 module.exports = router;
