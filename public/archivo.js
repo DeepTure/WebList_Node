@@ -1,1 +1,0 @@
-function js_kwai() {}
