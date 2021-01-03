@@ -19,7 +19,8 @@
 
         <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: dark)" href="/public/CSS/FuenteD.css">
         <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: light)" href="/public/CSS/FuenteL.css">
-
+        
+        
         <style type="text/css">
             .bg-img{
                 margin: 0;
@@ -101,15 +102,15 @@
                 <br>
             </p>
             <!-- De momento los grupos se vana a quedar estaticos solo para los cuartos -->
-            <a href="#" class="g7">5IV7</a>
+            <a href="#" class="g7">5IV6</a>
             <p class="space">
                 <br>
             </p>
-            <a href="#"  class="g8">5IV8</a>
+            <a href="#"  class="g8">5IV7</a>
             <p class="space">
                 <br>
             </p>
-            <a href="#" class="g9">5IV9</a>
+            <a href="#" class="g9">5IV8</a>
             <p class="space">
                 <br>
             </p>
@@ -160,10 +161,10 @@
                                 <%= alumno[i].boleta %>
                             </td>
                             <td class="atxt white">
-                                <%= alumno[i].nombre%>
+                                <%= alumno[i].nombre + " " + alumno[i].app + " " + alumno[i].apm %>
                             </td>
                             <td>
-                                <a href="#"  class="g8">Eliminar</a>
+                                <a href="/eliminaralumno/<%= alumno[i].boleta %>"  class="g8">Eliminar</a>
                             </td>
                         </tr>
                     <% } %>
@@ -174,7 +175,7 @@
             </div>
             <% } %>
             <!-- este es el formulario para los alumnos -->
-            <form id="alumno" method="post" action="CRUDalumno">
+            <form id="alumno" method="post" action="/CRUDalumno">
                 <p class="atxt white">
                     Boleta: <input type="number" name="boleta" class="inputtxt">
                 </p>
@@ -185,7 +186,7 @@
                 <!-- el año de ingreso lo omití porque viene en la boleta y creo que no es necesario -->
 
                 <p class="atxt white">
-                    Nombres: <input type="text" name="nombres" class="inputtxt">
+                    Nombres: <input type="text" name="nombre" class="inputtxt">
                 </p>
                 <p class="space">
                     <br>
@@ -202,22 +203,29 @@
                 <p class="space">
                     <br>
                 </p>
-
-                <!-- Botones del  formulariio-->
-                <input type="hidden" id="gr" name="grupo" value="null">
-                <input type="hidden" id="command" name="instruction" value="null">
-                
                 <p class="atxt white">
-                    <input type="radio" style="width: 5%; height: 1vw;" name="election" class="new" value="new">
-                    Guardar como nuevo
+                    Grupo:
+                    <select name="idGrupo" style="background-color: black; border: transparent;">
+                        <option value="5IV6">5IV6</option>
+                        <option value="5IV7">5IV7</option>
+                        <option value="5IV8">5IV8</option>
+                    </select>
                 </p>
                 <p class="space">
-                    <br>    
+                    <br>
                 </p>
                 <p class="atxt white">
-                    <input type="radio" style="width: 5%; height: 1vw;" name="election" class="save" value="save" onclick="">
-                    Guardar cambios
+                    Accion:
+                    <select name="action" style="background-color: black; border: transparent;">
+                        <option value="1">Agregar Alumno</option>
+                        <option value="2">Modificar Alumno</option>
+                        <option value="3">Agregar grupo al Alumno</option>
+                    </select>
                 </p>
+                <p class="space">
+                    <br>
+                </p>
+                <!-- Botones del  formulariio-->
                 <p class="space">
                     <br>    
                 </p>
@@ -255,10 +263,10 @@
                                     <%= profesor[i].numEmpleado %>
                                 </td>
                                 <td class="atxt white">
-                                    <%= profesor[i].nombre %>
+                                    <%= profesor[i].nombre + " " + profesor[i].app + " " + profesor[i].apm %>
                                 </td>
                                 <td>
-                                    <a href="#"  class="g8">Eliminar</a>
+                                    <a href="/eliminarprofe/<%= profesor[i].numEmpleado %>"  class="g8">Eliminar</a>
                                 </td>
                             </tr>
                         <% } %>
@@ -268,15 +276,15 @@
                     </p>
                 </div>
                 <% } %>
-            <form action="CRUDprofesor" method="post">
+            <form action="/CRUDprofesor" method="post">
                 <p class="atxt white">
-                    Numero de empleado: <input type="number" name="nempleado" class="inputtxt white">
+                    Numero de empleado: <input type="number" name="numEmpleado" class="inputtxt white">
                 </p>
                 <p class="space">
                     <br>
                 </p>
                 <p class="atxt white">
-                    Nombres: <input type="text" name="nombres" class="inputtxt white">
+                    Nombres: <input type="text" name="nombre" class="inputtxt white">
                 </p>
                 <p class="space">
                     <br>
@@ -293,43 +301,29 @@
                 <p class="space">
                     <br>
                 </p>
-                <input type="checkbox" style="width: 5%; height: 1vw;" id="ch" name="ch" value="PSW">
-                <label for="ch" class="atxt white">PSW</label>
-                <p class="space">
-                    <br>  
+                <p class="atxt white">
+                Materia: 
+                <select name="idMateria" style="background-color: black; border: transparent;">
+                    <option value="ISD">ISD</option>
+                    <option value="LPTIIII">LPTIIII</option>
+                    <option value="SWyA">SWyA</option>
+                </select>
                 </p>
-                <input type="checkbox" style="width: 5%; height: 1vw;" id="ch2" name="ch" value="TPPC">
-                <label for="ch2" class="atxt white">TPPC</label>
                 <p class="space">
-                    <br>  
+                    <br>
                 </p>
-                <input type="checkbox" style="width: 5%; height: 1vw;" id="ch3" name="ch" value="BBDD">
-                <label for="ch3" class="atxt white">BBDD</label>
-                <p class="space">
-                    <br>  
+                <p class="atxt white">
+                Accion:
+                <select name="action" style="background-color: black; border: transparent;">
+                    <option value="1">Agregar Profesor</option>
+                    <option value="2">Modificar Profesor</option>
+                    <option value="3">Agregar materia al profesor</option>
+                </select>
                 </p>
-                <input type="checkbox" style="width: 5%; height: 1vw;" id="ch4" name="ch" value="LPTI">
-                <label for="ch4" class="atxt white">LPTI</label>
-
                 <p class="space">
                     <br>
                 </p>
                 <!-- Botones del  formulariio-->
-                <input type="hidden" id="commando" name="instruction" value="null">
-                <p class="atxt white">
-                    <input type="radio" style="width: 5%; height: 1vw;" name="election" class="new2" value="new">
-                    Guardar como nuevo
-                </p>
-                <p class="space">
-                    <br>
-                </p>
-                <p class="atxt white">
-                    <input type="radio" style="width: 5%; height: 1vw;" name="election" class="save2" value="save" onclick="">
-                    Guardar cambios
-                </p>
-                <p class="space">
-                    <br>
-                </p>
                 <input type="submit" value="Ejecutar acciones" class="inputbutn int white">
                 <p class="space">
                     <br>
