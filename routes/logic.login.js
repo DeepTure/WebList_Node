@@ -78,20 +78,9 @@ router.get(
     },
     (req, res) => {
         db.query(
-            "SELECT " +
-                "idGrupo, cicloE, dia, hora, nomMateria " +
-                "FROM " +
-                "inasistencia ina " +
-                "INNER JOIN " +
-                "inscripcion ins ON ina.idInscripcion = ins.idInscripcion " +
-                "INNER JOIN " +
-                "materia_profesor mp ON ina.idMateria_profesor = mp.idMateria_profesor " +
-                "INNER JOIN " +
-                "materia ma ON mp.idMateria = ma.idMateria " +
-                "WHERE " +
-                "ins.boleta = ?;",
-            [req.user.id],
-            (err, inasistencias) => {
+            "select * from inasistencia where idInscripcion like '%?%';",
+            [Number(req.user.id)],
+            (err, resul) => {
                 if (err) {
                     console.log(err);
                 } else {

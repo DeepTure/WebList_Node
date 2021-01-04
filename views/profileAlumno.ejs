@@ -1,25 +1,58 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>
-            WebList
-        </title>
-        <link rel="shortcut icon" href="Img/DeepTureL.ico" />
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: no-preference)" href="CSS/RespL.css">
-        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: no-preference)" href="CSS/FuenteL.css">
+        <title>WebList</title>
+        <title>WebList</title>
+        <link rel="shortcut icon" href="/public/Img/DeepTureL.ico" />
+        <meta charset="utf-8" />
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous"
+        ></script>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: no-preference)"
+            href="/public/CSS/RespL.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: no-preference)"
+            href="/public/CSS/FuenteL.css"
+        />
 
-        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: dark)" href="CSS/RespD.css">
-        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: light)" href="CSS/RespL.css">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: dark)"
+            href="/public/CSS/RespD.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: light)"
+            href="/public/CSS/RespL.css"
+        />
 
-        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: dark)" href="CSS/FuenteD.css">
-        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: light)" href="CSS/FuenteL.css">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: dark)"
+            href="/public/CSS/FuenteD.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: light)"
+            href="/public/CSS/FuenteL.css"
+        />
 
         <style type="text/css">
-            .bg-img{
+            .bg-img {
                 margin: 0;
-                background-image: url('Img/BackgroundD.png');
+                background-image: url("/public/Img/BackgroundD.png");
                 background-size: 100%;
                 background-repeat: no-repeat;
                 background-position: 0 0;
@@ -27,8 +60,8 @@
                 background-size: cover;
                 transition: background 1s;
             }
-            .fg-img{
-                background-image: url('Img/ForegroundD.png');
+            .fg-img {
+                background-image: url("/public/Img/ForegroundD.png");
                 background-size: 100%;
                 background-repeat: no-repeat;
                 background-position: 0 0;
@@ -36,48 +69,45 @@
                 background-size: cover;
                 transition: background 1s;
             }
-
-            .logo{
-                background-image: url('Img/DeepTureD.png');
+            .logo {
+                background-image: url("/public/Img/DeepTureD.png");
                 background-size: 100%;
                 background-size: cover;
                 transition: background 1s;
             }
-
-            .logoHelp{
-                background-image: url('Img/HelpL.png');
+            .logoHelp {
+                background-image: url("/public/Img/HelpL.png");
                 background-size: 70%;
                 background-repeat: no-repeat;
                 background-position: 50% 0;
                 transition: background 1s;
             }
-
             @media screen and (prefers-color-scheme: light) {
-                .bg-img{
-                    background-image: url('Img/BackgroundL.png');
+                .bg-img {
+                    background-image: url("/public/Img/BackgroundL.png");
                     transition: background 1s;
                 }
-                .fg-img{
-                    background-image: url('Img/ForegroundLHelp.png');
+                .fg-img {
+                    background-image: url("/public/Img/ForegroundLHelp.png");
                     transition: background 1s;
                 }
-                @media screen and (orientation: landscape){
-                    .fg-img{
-                        background-image: url('Img/ForegroundL.png');
+                @media screen and (orientation: landscape) {
+                    .fg-img {
+                        background-image: url("/public/Img/ForegroundL.png");
                         transition: background 1s;
                     }
                 }
-                .logo{
-                    background-image: url('Img/DeepTureL.png');
+                .logo {
+                    background-image: url("/public/Img/DeepTureL.png");
                     transition: background 1s;
                 }
-                .logoHelp{
-                    background-image: url('Img/HelpD.png');
+                .logoHelp {
+                    background-image: url("/public/Img/HelpD.png");
                     transition: background 1s;
                 }
             }
         </style>
-        <script src="JS/Validate.js"></script>
+        <script src="/public/validate.js"></script>
     </head>
     <body link="Black" vlink="Black" alink="Black" class="bg-img">
         <nav>
@@ -132,7 +162,7 @@
                         <br>
                     </div>
                     <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                        Ingrese numero de Boleta
+                        Ingrese su numero de boleta
                     </p><br>
                     <input type="text" id="pass2" class="inputtxt" name="id" style="margin-left: 1.5rem;">
                     <div class="space">
@@ -170,7 +200,7 @@
                     <br>
                 </div>
                 <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                    Ingrese tu numero de boleta
+                    Ingrese su numero de boleta
                 </p>
                 <div class="space">
                     <br>
@@ -182,7 +212,5 @@
                 <input type="submit" id="Send" value="Enviar" class="inputbutn int" style="margin-left: 1.5rem;">
             </form>
         </div>
-    </div>
-</body>
-<%=request.getAttribute("code")%>
+    </body>
 </html>
