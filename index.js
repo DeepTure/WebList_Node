@@ -27,6 +27,7 @@ const navegacion = require("./routes/navegacion.rutas");
 const login = require("./routes/logic.login");
 const vistaAdmin = require("./routes/vista.admin.cruds");
 const crudAlumno = require("./routes/crud.alumno.routes");
+const profile = require("./routes/profile");
 //variables
 
 /*
@@ -123,6 +124,7 @@ app.use(navegacion);
 app.use(login);
 app.use(vistaAdmin);
 app.use(crudAlumno);
+app.use(profile);
 //rutas de emergencia cuando ocurre
 //un error 404 (pagina no encontrada) o 500 (error interno del servidor)
 //NO DESCOMENTAR ESTAS LINEAS HASTA QUE EXISTAN LAS PAGINAS

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebList</title>
+        <link rel="shortcut icon" href="/public/Img/DeepTureL.ico" />
+        <meta charset="utf-8" />
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous"
+        ></script>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: no-preference)"
+            href="/public/CSS/RespL.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: no-preference)"
+            href="/public/CSS/FuenteL.css"
+        />
+
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: dark)"
+            href="/public/CSS/RespD.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: light)"
+            href="/public/CSS/RespL.css"
+        />
+
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: dark)"
+            href="/public/CSS/FuenteD.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen and (prefers-color-scheme: light)"
+            href="/public/CSS/FuenteL.css"
+        />
+
+        <style type="text/css">
+            .bg-img {
+                margin: 0;
+                background-image: url("/public/Img/BackgroundD.png");
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-position: 0 0;
+                background-attachment: fixed;
+                background-size: cover;
+                transition: background 1s;
+            }
+            .fg-img {
+                background-image: url("/public/Img/ForegroundD.png");
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-position: 0 0;
+                background-attachment: fixed;
+                background-size: cover;
+                transition: background 1s;
+            }
+
+            .logo {
+                background-image: url("/public/Img/DeepTureD.png");
+                background-size: 100%;
+                background-size: cover;
+                transition: background 1s;
+            }
+
+            .logoHelp {
+                background-image: url("/public/Img/HelpL.png");
+                background-size: 70%;
+                background-repeat: no-repeat;
+                background-position: 50% 0;
+                transition: background 1s;
+            }
+
+            @media screen and (prefers-color-scheme: light) {
+                .bg-img {
+                    background-image: url("/public/Img/BackgroundL.png");
+                    transition: background 1s;
+                }
+                .fg-img {
+                    background-image: url("/public/Img/ForegroundLHelp.png");
+                    transition: background 1s;
+                }
+                @media screen and (orientation: landscape) {
+                    .fg-img {
+                        background-image: url("/public/Img/ForegroundL.png");
+                        transition: background 1s;
+                    }
+                }
+                .logo {
+                    background-image: url("/public/Img/DeepTureL.png");
+                    transition: background 1s;
+                }
+                .logoHelp {
+                    background-image: url("/public/Img/HelpD.png");
+                    transition: background 1s;
+                }
+            }
+        </style>
+    </head>
+    <body link="Black" vlink="Black" alink="Black" class="bg-img">
+        <nav>
+            <p class="tittle">
+                Mi Perfil
+            </p>
+            <p class="tittle">
+                <%= profesor[0].nombre + " " + profesor[0].app + " " +  profesor[0].apm%>
+            </p>
+            <p class="space">
+                <br>
+                <br>
+            </p>
+            <input type="button" name="Volver" value="Volver" class="inputbutn nav int padd" onclick="location.href = 'Home.jsp'">
+        </nav>
+        <div class="blockAn fg-img">
+            <div class="space">
+                <br>
+                <br>
+                <br>
+            </div>
+            <div class="title white" style="text-align: left; margin-left: 1.5rem;">
+                Cambiar contraseña
+            </div>
+            <div class="space">
+                <br>
+            </div>
+            <div class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
+                Usar al menos 8 caracteres entre mayusculas y minusculas con al menos 1 numero
+            </div>
+            <div class="space">
+                <br>
+            </div>
+            <div>
+                <form method="post" id="password" style="text-align: left;" action="/changepassword">
+                    <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
+                        Nueva contraseña
+                    </p>
+                    <div class="space">
+                        <br>
+                    </div>
+                    <input type="password" id="pass1" class="inputtxt white" name="contraseña" style="margin-left: 1.5rem;">
+                    <div class="space">
+                        <br>
+                    </div>
+                    <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
+                        Confirmar contraseña
+                    </p>
+                    <div class="space">
+                        <br>
+                    </div>
+                    <input type="password" id="pass2" class="inputtxt white" name="confirmar" style="margin-left: 1.5rem;">
+                    
+                    <input type="hidden" id="email" class="inputtxt white" name="numEmpleado" style="margin-left: 1.5rem;" value="<%= profesor[0].numEmpleado %>">
+                    <div class="space">
+                        <br>
+                    </div>
+                    <input type="submit" id="Login" value="Enviar" class="inputbutn int white" style="margin-left: 1.5rem;">
+                </form>
+                <p class="space">
+                    <br>
+                    <br>
+                    <br>
+                </p>
+                <form method="post" id="password" style="text-align: left;" action="changeemail">
+            </div>
+            <div class="title white" style="text-align: left; margin-left: 1.5rem;">
+                Cambiar correo
+            </div>
+            <div class="space">
+                <br>
+            </div>
+            <input type="text" id="email" class="inputtxt white" name="correo" style="margin-left: 1.5rem;">
+            <div class="space">
+                <br>
+            </div>
+            <input type="hidden" id="email" class="inputtxt white" name="numEmpleado" style="margin-left: 1.5rem;" value="<%= profesor[0].numEmpleado %>">
+            <div class="space">
+                <br>
+            </div>
+            <input type="submit" id="Login" value="Enviar" class="inputbutn int white" style="margin-left: 1.5rem;">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
