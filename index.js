@@ -25,8 +25,8 @@ const main = require("./routes/main.routes");
 const crudAsistencia = require("./routes/logic.paseLista.routes");
 const navegacion = require("./routes/navegacion.rutas");
 const login = require("./routes/logic.login");
-const vistaAdmin= require("./routes/vista.admin.cruds");
-const crudAlumno= require("./routes/crud.alumno.routes");
+const vistaAdmin = require("./routes/vista.admin.cruds");
+const crudAlumno = require("./routes/crud.alumno.routes");
 //variables
 
 /*
@@ -118,7 +118,6 @@ app.use(Parser);
 
 //rutas
 app.use(main);
-//app.use(crudAlumno);
 app.use(crudAsistencia);
 app.use(navegacion);
 app.use(login);
