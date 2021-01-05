@@ -89,44 +89,5 @@ router.get("[aqui va la direccion]", (req, res) => {
     });
 });
 
-//Funcion modificarAdminContraseña
-router.post("alumnoControllerPassword", (req, res) => {
-    //Recopilamos los datos del formulario
-    var { boleta, contraseña } = req.body;
-    //Establecemos la sentencia sql para Modificar la bd
-    db.query(
-        "update alumno set contraseña=? where boleta=?",
-        [contraseña, boleta],
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log("Se realizo correctamente el cambio de contraseña");
-                return res.redirect("/homealumno");
-            }
-        }
-    );
-});
 
-//Funcion modificarAdminElementos
-router.post("alumnoControllerElementos", (req, res) => {
-    //Recopilamos los datos del formulario
-    var { boleta, nombre, correo } = req.body;
-    //Establecemos la sentencia sql para Modificar la bd
-    db.query(
-        "update alumno set correo=?, nombre=? where boleta=?",
-        [correo, nombre, boleta],
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                //direcciónar a la pagina si se hizo bien el proceso
-                console.log(
-                    "Se realizo correctamente el cambio de correo y nombre"
-                );
-                return res.redirect("/homealumno");
-            }
-        }
-    );
-});
 module.exports = router;

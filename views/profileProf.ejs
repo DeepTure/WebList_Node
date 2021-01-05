@@ -122,7 +122,7 @@
                 <br>
                 <br>
             </p>
-            <input type="button" name="Volver" value="Volver" class="inputbutn nav int padd" onclick="location.href = 'Home.jsp'">
+            <a class="inputbutn int nav" href="/Homeprof">Volver</a>
         </nav>
         <div class="blockAn fg-img">
             <div class="space">
@@ -130,6 +130,55 @@
                 <br>
                 <br>
             </div>
+
+            <div class="title white" style="text-align: left; margin-left: 1.5rem;">
+                Cambiar Datos Personales
+            </div>
+            <div class="space">
+                <br>
+            </div>
+            <div>
+                <form method="post" id="password" style="text-align: left;" action="/changedataprof">
+                    <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
+                        Nombres:
+                    </p>
+                    <div class="space">
+                        <br>
+                    </div>
+                    <input type="text" id="pass1" class="inputtxt white" name="nombre" style="margin-left: 1.5rem;">
+                    <div class="space">
+                        <br>
+                    </div>
+                    <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
+                        Apellido Paterno:
+                    </p>
+                    <div class="space">
+                        <br>
+                    </div>
+                    <input type="text" id="pass2" class="inputtxt white" name="app" style="margin-left: 1.5rem;">
+                    <div class="space">
+                        <br>
+                    </div>
+                    <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
+                        Apellido Materno:
+                    </p>
+                    <div class="space">
+                        <br>
+                    </div>
+                    <input type="text" id="pass2" class="inputtxt white" name="apm" style="margin-left: 1.5rem;">
+                    <input type="hidden" id="email" class="inputtxt white" name="numEmpleado" style="margin-left: 1.5rem;" value="<%= profesor[0].numEmpleado %>">
+                    <div class="space">
+                        <br>
+                    </div>
+                    <input type="submit" id="Login" value="Enviar" class="inputbutn int white" style="margin-left: 1.5rem;">
+                </form>
+                <p class="space">
+                    <br>
+                    <br>
+                    <br>
+                </p>
+            </div>
+
             <div class="title white" style="text-align: left; margin-left: 1.5rem;">
                 Cambiar contraseña
             </div>
@@ -143,7 +192,7 @@
                 <br>
             </div>
             <div>
-                <form method="post" id="password" style="text-align: left;" action="/changepassword">
+                <form method="post" id="password" style="text-align: left;" action="/changepasswordprof">
                     <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
                         Nueva contraseña
                     </p>
@@ -173,10 +222,10 @@
                     <br>
                     <br>
                 </p>
-                <form method="post" id="password" style="text-align: left;" action="changeemail">
+                <form method="post" id="password" style="text-align: left;" action="changeemailprof">
             </div>
             <div class="title white" style="text-align: left; margin-left: 1.5rem;">
-                Cambiar correo
+                Modificar correo
             </div>
             <div class="space">
                 <br>

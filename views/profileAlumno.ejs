@@ -114,11 +114,14 @@
             <p class="tittle">
                 Mi Perfil
             </p>
+            <p class="tittle">
+                <%= alumno[0].nombre + " " + alumno[0].app + " " +  alumno[0].apm%>
+            </p>
             <p class="space">
                 <br>
                 <br>
             </p>
-            <input type="button" name="Volver" value="Volver" class="inputbutn nav int padd" onclick="location.href = 'Homealumno.ejs'">
+            <a class="inputbutn int nav" href="/Homealumno">Volver</a>
         </nav>
         <div class="blockAn fg-img">
             <div class="space">
@@ -139,7 +142,7 @@
                 <br>
             </div>
             <div>
-                <form method="post" id="password" style="text-align: left;" action="alumnoControllerPassword">
+                <form method="post" id="password" style="text-align: left;" action="changepasswordalumno">
                     <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
                         Nueva contraseña
                     </p>
@@ -147,7 +150,7 @@
                         <br>
                     </div>
                     <input type="hidden" name="instruction" value="changePassword">
-                    <input type="password" id="pass1" class="inputtxt" name="pass" style="margin-left: 1.5rem;">
+                    <input type="password" id="pass1" class="inputtxt" name="contraseña" style="margin-left: 1.5rem;">
                     <div class="space">
                         <br>
                     </div>
@@ -157,14 +160,9 @@
                     <div class="space">
                         <br>
                     </div>
-                    <input type="password" id="pass2" class="inputtxt" name="pass2" style="margin-left: 1.5rem;">
-                    <div class="space">
-                        <br>
-                    </div>
-                    <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                        Ingrese su numero de boleta
-                    </p><br>
-                    <input type="text" id="pass2" class="inputtxt" name="id" style="margin-left: 1.5rem;">
+                    <input type="password" id="pass2" class="inputtxt" name="confirmar" style="margin-left: 1.5rem;">
+                    
+                    <input type="hidden" id="pass2" class="inputtxt" name="boleta" style="margin-left: 1.5rem;" value="<%= alumno[0].boleta %>">
                     <div class="space">
                         <br>
                     </div>
@@ -176,36 +174,18 @@
                     <br>
                 </p>
             </div>
-            <form method="post" id="password" style="text-align: left;" action="alumnoControllerElementos">
-                <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                    Modificar Correo
-                </p>
+            <form method="post" id="password" style="text-align: left;" action="changeemailalumno">
+                <div class="title white" style="text-align: left; margin-left: 1.5rem;">
+                    Modificar correo
+                </div>
                 <div class="space">
                     <br>
                 </div>
-                <input type="hidden" name="instruction" value="newEmail">
-                <input type="text" id="email" class="inputtxt" name="email" style="margin-left: 1.5rem;">
+                <input type="text" id="email" class="inputtxt" name="correo" style="margin-left: 1.5rem;">
                 <div class="space">
                     <br>
                 </div>
-                <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                    Modificar Nombre
-                </p>
-                <div class="space">
-                    <br>
-                </div>
-                <input type="hidden" name="instruction" value="newName">
-                <input type="text" id="name" class="inputtxt" name="name" style="margin-left: 1.5rem;">
-                <div class="space">
-                    <br>
-                </div>
-                <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                    Ingrese su numero de boleta
-                </p>
-                <div class="space">
-                    <br>
-                </div>
-                <input type="text" id="email" class="inputtxt" name="id" style="margin-left: 1.5rem;">>
+                <input type="hidden" id="pass2" class="inputtxt" name="boleta" style="margin-left: 1.5rem;" value="<%= alumno[0].boleta %>">
                 <div class="space">
                     <br>
                 </div>

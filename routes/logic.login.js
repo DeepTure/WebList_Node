@@ -108,13 +108,31 @@ router.get('/Myprofile',(req,res,next)=>{
     
 },(req,res)=>{
     var perfil=req.user.id;
-    db.query("select * from profesor where numEmpleado= ?",[perfil],(err,profesor)=>{
-        if (err){
-            console.log(err);
-        }else{
-            res.render("profileProf",{profesor});
-        }
-    });
+    if(req.user.rol == "profesor"){
+        db.query("select * from profesor where numEmpleado= ?",[perfil],(err,profesor)=>{
+            if (err){
+                console.log(err);
+            }else{
+                res.render("profileProf",{profesor});
+            }
+        });
+    }else if(req.user.rol == "alumno"){
+        db.query("select * from alumno where boleta=?",[perfil],(err,alumno)=>{
+            if(err){
+                console.log(err);
+            }else{
+                res.render("profileAlumno",{alumno});
+            }
+        });
+    }else if(req.user.rol== "administrador"){
+        db.query("select * from administrador where idAdmin=?",[perfil],(err,administrador)=>{
+            if(err){
+                console.log(err);
+            }else{
+                res.render("profileAdmin",{administrador});
+            }
+        });
+    }
 });
 
 module.exports = router;

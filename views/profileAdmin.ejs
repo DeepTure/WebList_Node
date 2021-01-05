@@ -117,11 +117,14 @@
             <p class="tittle">
                 Mi Perfil
             </p>
+            <p class="tittle">
+                <%= administrador[0].nombre%>
+            </p>
             <p class="space">
                 <br>
                 <br>
             </p>
-            <input type="button" name="Volver" value="Volver" class="inputbutn nav int padd" onclick="location.href = 'HomeAdmin.jsp'">
+            <a class="inputbutn int nav" href="/Homeadmin">Volver</a>
         </nav>
         <div class="blockAn fg-img">
             <div class="space">
@@ -129,6 +132,39 @@
                 <br>
                 <br>
             </div>
+
+            <div class="title white" style="text-align: left; margin-left: 1.5rem;">
+                Cambiar Datos Personales
+            </div>
+            <div class="space">
+                <br>
+            </div>
+            <div>
+                <form method="post" id="password" style="text-align: left;" action="/changedataadmin">
+                    <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
+                        Nombre Completo:
+                    </p>
+                    <div class="space">
+                        <br>
+                    </div>
+                    <input type="text" id="pass1" class="inputtxt white" name="nombre" style="margin-left: 1.5rem;">
+                    <div class="space">
+                        <br>
+                    </div>
+
+                    <input type="hidden" id="email" class="inputtxt white" name="idAdmin" style="margin-left: 1.5rem;" value="<%= administrador[0].idAdmin %>">
+                    <div class="space">
+                        <br>
+                    </div>
+                    <input type="submit" id="Login" value="Enviar" class="inputbutn int white" style="margin-left: 1.5rem;">
+                </form>
+                <p class="space">
+                    <br>
+                    <br>
+                    <br>
+                </p>
+            </div>
+
             <div class="title white" style="text-align: left; margin-left: 1.5rem;">
                 Cambiar contraseña
             </div>
@@ -142,15 +178,14 @@
                 <br>
             </div>
             <div>
-                <form method="post" id="password" style="text-align: left;" action="adminControllerPassword">
+                <form method="post" id="password" style="text-align: left;" action="/changepasswordadmin">
                     <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
                         Nueva contraseña
                     </p>
                     <div class="space">
                         <br>
                     </div>
-                    <input type="hidden" name="instruction" value="changePassword">
-                    <input type="password" id="pass1" class="inputtxt" name="pass" style="margin-left: 1.5rem;">
+                    <input type="password" id="pass1" class="inputtxt white" name="contraseña" style="margin-left: 1.5rem;">
                     <div class="space">
                         <br>
                     </div>
@@ -160,61 +195,39 @@
                     <div class="space">
                         <br>
                     </div>
-                    <input type="password" id="pass2" class="inputtxt" name="pass2" style="margin-left: 1.5rem;">
+                    <input type="password" id="pass2" class="inputtxt white" name="confirmar" style="margin-left: 1.5rem;">
+                    
+                    <input type="hidden" id="email" class="inputtxt white" name="idAdmin" style="margin-left: 1.5rem;" value="<%= administrador[0].idAdmin %>">
                     <div class="space">
                         <br>
                     </div>
-                    <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                        Ingrese su numero de empleado
-                    </p><br>
-                    <input type="text" id="pass2" class="inputtxt" name="id" style="margin-left: 1.5rem;">
-                    <div class="space">
-                        <br>
-                    </div>
-                    <input type="submit" id="Login" value="Enviar" class="inputbutn int" style="margin-left: 1.5rem;">
+                    <input type="submit" id="Login" value="Enviar" class="inputbutn int white" style="margin-left: 1.5rem;">
                 </form>
                 <p class="space">
                     <br>
                     <br>
                     <br>
                 </p>
+                <form method="post" id="password" style="text-align: left;" action="changeemailadmin">
             </div>
-            <form method="post" id="password" style="text-align: left;" action="adminControllerElementos">
-                <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                    Modificar Correo
-                </p>
-                <div class="space">
-                    <br>
-                </div>
-                <input type="hidden" name="instruction" value="newEmail">
-                <input type="text" id="email" class="inputtxt" name="email" style="margin-left: 1.5rem;">
-                <div class="space">
-                    <br>
-                </div>
-                <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                    Modificar Nombre
-                </p>
-                <div class="space">
-                    <br>
-                </div>
-                <input type="hidden" name="instruction" value="newName">
-                <input type="text" id="name" class="inputtxt" name="name" style="margin-left: 1.5rem;">
-                <div class="space">
-                    <br>
-                </div>
-                <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                    Ingrese su numero de empleado
-                </p>
-                <div class="space">
-                    <br>
-                </div>
-                <input type="text" id="email" class="inputtxt" name="id" style="margin-left: 1.5rem;">>
-                <div class="space">
-                    <br>
-                </div>
-                <input type="submit" id="Send" value="Enviar" class="inputbutn int" style="margin-left: 1.5rem;">
+            <div class="title white" style="text-align: left; margin-left: 1.5rem;">
+                Modificar correo
+            </div>
+            <div class="space">
+                <br>
+            </div>
+            <input type="text" id="email" class="inputtxt white" name="correo" style="margin-left: 1.5rem;">
+            <div class="space">
+                <br>
+            </div>
+            <input type="hidden" id="email" class="inputtxt white" name="idAdmin" style="margin-left: 1.5rem;" value="<%= administrador[0].idAdmin %>">
+            <div class="space">
+                <br>
+            </div>
+            <input type="submit" id="Login" value="Enviar" class="inputbutn int white" style="margin-left: 1.5rem;">
             </form>
         </div>
+    </div>
     </body>
 </html>
 
