@@ -126,24 +126,28 @@
                 <br />
             </p>
             <!-- De momento los grupos se vana a quedar estaticos solo para los cuartos -->
-            <a href="#" class="g7">5IV6</a>
+            <a href="#">5IV6</a>
             <p class="space">
                 <br />
             </p>
-            <a href="#" class="g8">5IV7</a>
+            <a href="#">5IV7</a>
             <p class="space">
                 <br />
             </p>
-            <a href="#" class="g9">5IV8</a>
+            <a href="#">5IV8</a>
             <p class="space">
                 <br />
             </p>
             <div class="padd">
-                <a class="inputbutn int nav" href="/Myprofile">Perfil</a>
+                <a href="/Myprofile">
+                    <button class="inputbutn int nav">Perfil</button>
+                </a>
                 <p class="space">
                     <br />
                 </p>
-                <a class="inputbutn int nav" href="/logout"> Cerrar sesion </a>
+                <a href="/logout">
+                    <button class="inputbutn int nav">Cerrar sesion</button>
+                </a>
             </div>
         </nav>
         <!-- este code son las alertas que manda el backend por errores -->
@@ -193,7 +197,7 @@
             <form id="alumno" method="post" action="/CRUDalumno">
                 <p class="atxt white">
                     Boleta:
-                    <input type="number" name="boleta" class="inputtxt" />
+                    <input type="number" name="boleta" class="inputtxt white" />
                 </p>
                 <p class="space">
                     <br />
@@ -203,21 +207,21 @@
 
                 <p class="atxt white">
                     Nombres:
-                    <input type="text" name="nombre" class="inputtxt" />
+                    <input type="text" name="nombre" class="inputtxt white" />
                 </p>
                 <p class="space">
                     <br />
                 </p>
                 <p class="atxt white">
                     Apellido paterno:
-                    <input type="text" name="app" class="inputtxt" />
+                    <input type="text" name="app" class="inputtxt white" />
                 </p>
                 <p class="space">
                     <br />
                 </p>
                 <p class="atxt white">
                     Apellido materno:
-                    <input type="text" name="apm" class="inputtxt" />
+                    <input type="text" name="apm" class="inputtxt white" />
                 </p>
                 <p class="space">
                     <br />
@@ -225,8 +229,8 @@
                 <p class="atxt white">
                     Grupo:
                     <select
+                        class="inputtxt white"
                         name="idGrupo"
-                        style="background-color: black; border: transparent"
                     >
                         <option value="5IV6">5IV6</option>
                         <option value="5IV7">5IV7</option>
@@ -239,8 +243,8 @@
                 <p class="atxt white">
                     Ciclo escolar:
                     <select
+                        class="inputtxt white"
                         name="cicloE"
-                        style="background-color: black; border: transparent"
                     >
                         <option value="<%= new Date().getFullYear()%>-1">
                             <%= new Date().getFullYear()%>-1
@@ -256,8 +260,8 @@
                 <p class="atxt white">
                     Accion:
                     <select
+                        class="inputtxt white"
                         name="action"
-                        style="background-color: black; border: transparent"
                     >
                         <option value="1">Agregar Alumno</option>
                         <option value="2">Modificar Alumno</option>
@@ -354,8 +358,8 @@
                 <p class="atxt white">
                     Materia:
                     <select
+                        class="inputtxt white"
                         name="idMateria"
-                        style="background-color: black; border: transparent"
                     >
                         <option value="ISD">
                             Introduccion a los sistemas distribuidos
@@ -375,8 +379,8 @@
                 <p class="atxt white">
                     Accion:
                     <select
+                        class="inputtxt white"
                         name="action"
-                        style="background-color: black; border: transparent"
                     >
                         <option value="1">Agregar Profesor</option>
                         <option value="2">Modificar Profesor</option>

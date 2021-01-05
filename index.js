@@ -35,6 +35,7 @@ el process.env.PORT se usa para obtener el puerto por defecto
 de nuestro servicio de hosting o en su defecto usar el puerto 8080
 */
 app.set("host", process.env.PORT || 3000);
+//app.set("host", 8080);
 //para poder utilizar el render con ejs
 app.set("view engine", "ejs");
 app.engine("html", require("ejs").renderFile);

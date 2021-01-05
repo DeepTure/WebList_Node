@@ -1,16 +1,13 @@
 /* WebListProject BloodyMoon CSS */
-
 .inputbutn.int:disabled {
-    color: rgb(68, 68, 68);
+    color: rgb(69, 69, 69);
     width: 15%;
 }
-
 .inputbutn.int:hover {
     background: white;
     color: black;
     width: 15%;
 }
-
 .inputbutn.nav:hover {
     background: white;
     width: 15%;
@@ -52,6 +49,7 @@ option {
     height: 100%;
 }
 .inputtxt {
+    text-align: center;
     background: none;
     color: white;
     width: 15%;
@@ -136,6 +134,7 @@ th {
         height: 100%;
     }
     .inputtxt {
+        text-align: center;
         background: none;
         color: white;
         width: 15%;
@@ -148,6 +147,7 @@ th {
         transition: background 1.2s, color 1.2s;
     }
     .inputtxt.nav {
+        text-align: center;
         background: none;
         color: white;
         width: 100%;

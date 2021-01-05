@@ -4,7 +4,7 @@ const mysql = require("mysql");
 const mysqlConnection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "n0m3l0",
+    password: "alpine",
     database: "weblist",
     multipleStatements: true,
 });
@@ -13,9 +13,9 @@ const mysqlConnection = mysql.createConnection({
 mysqlConnection.connect((err) => {
     //revisa si no ocurrio algun error
     if (err) {
-        console.log("conexion fallida: " + err);
+        console.log("BD: conexión fallida: " + err);
     } else {
-        console.log("conexion exitosa");
+        console.log("BD: conexión exitosa");
     }
 });
 

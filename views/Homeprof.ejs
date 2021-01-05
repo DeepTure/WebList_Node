@@ -167,11 +167,19 @@
             <!-- botones para salir de tu cuenta y para configurara tu cuenta-->
             <div class="padd">
                 <br>
-                <a class="inputbutn int nav" href="/Myprofile">Perfil</a>
+                <a href="/Myprofile">
+                    <button class="inputbutn int nav">
+                        Perfil
+                    </button>
+                </a>
                 <p class="space">
                     <br />
                 </p>
-                <a class="inputbutn int nav" href="/logout"> Cerrar sesion </a>
+                <a href="/logout">
+                    <button class="inputbutn int nav">
+                        Cerrar sesion
+                    </button>
+                </a>
             </div>
         </nav>
 
@@ -199,8 +207,8 @@
             </p>
             <form action="CRUDalumno" method="post">
                 <div name="lista">
-                    <p id="materias" class="atxt white">
-                        Materia<br />
+                    <p class="title white">Materias</p>
+                    <p class="atxt white">
                         <input
                             type="radio"
                             style="width: 5%; height: 1vw"
@@ -317,16 +325,23 @@
                 <p class="atxt white">Faltas del dia de hoy.</p>
                 <table id="alumnosHoy"></table>
                 <br />
-                <p class="atxt white">Insertar nueva falta.</p>
+                <p class="title white">Insertar nueva falta</p>
                 <form action="CRUDalumno" method="post">
-                    <label for="bol">Numero de Boleta</label><br />
+                    <label class="atxt white" for="bol">Numero de Boleta</label><br />
+                    <p class="space">
+                        <br />
+                        </p>
                     <input
+                        placeholder = "Ingrese la boleta"
                         type="text"
                         id="boletaIndv"
                         name="boleta"
                         class="inputtxt white"
                     />
-                    <br />
+
+                    <p class="space">
+                        <br />
+                    </p>
                     <input
                         type="button"
                         name=""

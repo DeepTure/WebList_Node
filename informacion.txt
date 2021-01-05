@@ -10,3 +10,5 @@ si tienen alguna duda contactenme
 git add .
 git commit -m ""
 git push origin master
+
+Quien no sabe subir a git :u?

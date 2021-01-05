@@ -134,6 +134,7 @@
             <div class="space">
                 <br />
             </div>
+            <p class="subtitle white">Nota: En caso de ser su primera vez en el sistema, la contraseña es su usuario</p>
             <% } %>
             <div>
                 <form method="post" id="LogIn" action="/InicioSesionController">
@@ -142,6 +143,7 @@
                         <br />
                     </div>
                     <input
+                        placeholder = "# de empleado / boleta"
                         type="text"
                         id="Account"
                         class="inputtxt white"
@@ -157,6 +159,7 @@
                         <br />
                     </div>
                     <input
+                        placeholder = "Contraseña"
                         type="password"
                         id="Password"
                         class="inputtxt white"
@@ -177,14 +180,14 @@
                     />
                     <div class="space">
                         <br />
-                    </div>
-                    <input
+                    </div>  
+                    <!-- <input
                         type="button"
                         id="Recover"
                         value="Recuperar cuenta"
                         class="inputbutn int white"
                         onclick="location.href = 'Recover.jsp'"
-                    />
+                    />-->
                 </form>
             </div>
         </div>
