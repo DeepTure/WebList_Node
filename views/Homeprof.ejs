@@ -208,13 +208,13 @@
             <form action="CRUDalumno" method="post">
                 <div name="lista">
                     <p class="title white">Materias</p>
-                    <p class="atxt white">
+                    <p class="atxt white" id="materias">
                         <input
                             type="radio"
                             style="width: 5%; height: 1vw"
                             name="rd"
                             id="mat1"
-                            onclick="prepararIdMateria('SWyA')"
+                            onclick="prepararIdMateria()"
                         />
                         <label for="mat1" class="atxt white"
                             >Seguridad web y aplicaciones</label
@@ -224,7 +224,7 @@
                             style="width: 5%; height: 1vw"
                             name="rd"
                             id="mat2"
-                            onclick="prepararIdMateria('ISD')"
+                            onclick="prepararIdMateria()"
                         />
                         <label for="mat2" class="atxt white"
                             >Introducción a los sustemas distribuidos</label
