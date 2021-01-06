@@ -129,17 +129,17 @@ app.use(profile);
 //rutas de emergencia cuando ocurre
 //un error 404 (pagina no encontrada) o 500 (error interno del servidor)
 //NO DESCOMENTAR ESTAS LINEAS HASTA QUE EXISTAN LAS PAGINAS
-/*app.use((req, res) => {
+app.use((req, res) => {
     res.status(404);
     //se necesita crear la pagina
-    res.render("404.html");
-});*/
-/* 
+    res.render("error",{error:404});
+});
+
 app.use((error, req, res, next) => {
     res.status(500);
     //se necesita crear la pagina
-    res.render("500.html", { error: error });
-});*/
+    res.render("error", { error: 500, message:error});
+});
 
 //montando el servidor
 

@@ -5,4 +5,8 @@
 const router = require("express").Router();
 const db = require("../database/connection");
 
+router.get('/error',(req,res)=>{
+    res.render('error',{});
+});
+
 module.exports = router;
