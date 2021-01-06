@@ -81,9 +81,7 @@ function mostrarAlumnos(alumnos, grupo) {
 }
 
 function mostrarMaterias(materias) {
-    console.group('show subjects');
     codigo = "<br />";
-    console.log(materias);
     materias.forEach((materia) => {
         codigo +=
             `
@@ -110,9 +108,6 @@ function mostrarMaterias(materias) {
         `;
     });
     $("#materias").html(codigo);
-    console.log(materias);
-    console.log(codigo);
-    console.groupEnd();
 }
 
 //esta funcion se encarga de preparar las boletas, cada vez que hace click en un alumno para registrar su inasistencia, entonces se carga en esta funcion y se prepara
