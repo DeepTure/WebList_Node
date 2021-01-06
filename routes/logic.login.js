@@ -4,10 +4,11 @@ const db = require("../database/connection");
 
 //Preparado para redireccionar a las vistas correspondientes dependiendo el rol
 router.post(
-    "/InicioSesionController",
+    "/InicioSesionController", 
     passport.authenticate("local", {
         failureRedirect: "/",
         failureFlash: true,
+        badRequestMessage:'No ha introducido los datos correspondientes'
     }),
     function (req, res) {
         req.session.save((err) => {

@@ -56,6 +56,8 @@ app.use(passport.initialize());
 app.use(flash());
 app.use(passport.session());
 
+
+
 //passport local
 passport.use(
     new Passportlocal(
@@ -71,7 +73,7 @@ passport.use(
                         "select * from alumno where (boleta= ? AND contraseña= ?);",
                     [username, password, username, password, username, password],
                     (err, rows) => {
-                        if (err) return done(null, false);
+                        if (err) return done(null, false, {message: "Hubo un fallo en el proceso"});
                         if (rows[0].length > 0) {
                             let profesor = rows[0];
                             return done(null, {
@@ -101,6 +103,8 @@ passport.use(
         }
     )
 );
+
+
 
 passport.serializeUser(function (user, done) {
     done(null, [user.rol, user.id]);
