@@ -121,7 +121,17 @@
                 <br>
                 <br>
             </p>
-            <a class="inputbutn int nav" href="/Homealumno">Volver</a>
+            <% if(msj){ %>
+                <%= msj %>
+                <p class="space">
+                    <br />
+            </p>
+            <% } %>  
+            <a href="/Homealumno">
+                <button class="inputbutn int nav">
+                    Volver
+                </button>
+            </a>
         </nav>
         <div class="blockAn fg-img">
             <div class="space">

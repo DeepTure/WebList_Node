@@ -65,39 +65,39 @@ passport.use(
             passReqToCallback: true,
         },
         (req, username, password, done) => {
-            db.query(
-                "select * from profesor where (numEmpleado= ? AND contraseña= ?);" +
-                    "select * from administrador where (idAdmin= ? AND contraseña= ?);" +
-                    "select * from alumno where (boleta= ? AND contraseña= ?);",
-                [username, password, username, password, username, password],
-                (err, rows) => {
-                    if (err) return done(null, false);
-                    if (rows[0].length > 0) {
-                        let profesor = rows[0];
-                        return done(null, {
-                            rol: "profesor",
-                            id: profesor[0].numEmpleado.toString(),
-                        });
-                    } else if (rows[1].length > 0) {
-                        let administrador = rows[1];
-                        return done(null, {
-                            rol: "administrador",
-                            id: administrador[0].idAdmin.toString(),
-                        });
-                    } else if (rows[2].length > 0) {
-                        let alumno = rows[2];
-                        return done(null, {
-                            rol: "alumno",
-                            id: alumno[0].boleta.toString(),
-                        });
-                    } else {
-                        return done(null, false, {
-                            message:
-                                "Usuario y/o contraseña incorrectos, Intentelo nuevamente",
-                        });
+                db.query(
+                    "select * from profesor where (numEmpleado= ? AND contraseña= ?);" +
+                        "select * from administrador where (idAdmin= ? AND contraseña= ?);" +
+                        "select * from alumno where (boleta= ? AND contraseña= ?);",
+                    [username, password, username, password, username, password],
+                    (err, rows) => {
+                        if (err) return done(null, false);
+                        if (rows[0].length > 0) {
+                            let profesor = rows[0];
+                            return done(null, {
+                                rol: "profesor",
+                                id: profesor[0].numEmpleado.toString(),
+                            });
+                        } else if (rows[1].length > 0) {
+                            let administrador = rows[1];
+                            return done(null, {
+                                rol: "administrador",
+                                id: administrador[0].idAdmin.toString(),
+                            });
+                        } else if (rows[2].length > 0) {
+                            let alumno = rows[2];
+                            return done(null, {
+                                rol: "alumno",
+                                id: alumno[0].boleta.toString(),
+                            });
+                        } else {
+                            return done(null, false, {
+                                message:
+                                    "Usuario y/o contraseña incorrectos, Intentelo nuevamente",
+                            });
+                        }
                     }
-                }
-            );
+                );
         }
     )
 );
@@ -142,6 +142,9 @@ app.use((error, req, res, next) => {
 });*/
 
 //montando el servidor
+
+
+
 app.listen(app.get("host"), (req, res) => {
     console.log("Servidor en puerto: " + app.get("host"));
 });

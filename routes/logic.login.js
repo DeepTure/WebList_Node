@@ -60,9 +60,14 @@ router.get(
                 if (err) {
                     console.log(err);
                 } else {
+                    console.log()
+                    var succesprof=req.flash('prof')[0];
+                    var succesalumn=req.flash('alumn')[0];
                     return res.render("Homeadmin", {
                         profesor: resul[0],
                         alumno: resul[1],
+                        succesprof,
+                        succesalumn
                     });
                 }
             }
@@ -113,7 +118,8 @@ router.get('/Myprofile',(req,res,next)=>{
             if (err){
                 console.log(err);
             }else{
-                res.render("profileProf",{profesor});
+                var msj=req.flash('profe')[0];
+                res.render("profileProf",{profesor,msj});
             }
         });
     }else if(req.user.rol == "alumno"){
@@ -121,7 +127,8 @@ router.get('/Myprofile',(req,res,next)=>{
             if(err){
                 console.log(err);
             }else{
-                res.render("profileAlumno",{alumno});
+                var msj=req.flash('alumno')[0];
+                res.render("profileAlumno",{alumno,msj});
             }
         });
     }else if(req.user.rol== "administrador"){
@@ -129,7 +136,8 @@ router.get('/Myprofile',(req,res,next)=>{
             if(err){
                 console.log(err);
             }else{
-                res.render("profileAdmin",{administrador});
+                var msj=req.flash('admin')[0];
+                res.render("profileAdmin",{administrador,msj});
             }
         });
     }

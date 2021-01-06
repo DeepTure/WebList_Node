@@ -8,10 +8,12 @@ router.post("/changepasswordprof",(req, res)=>{
             if (err){
                 console.log(err);
             }else{
+                req.flash('profe',"La contraseña ha sido actualizada");
                 res.redirect('/Myprofile');
             }
         });
     }else{
+        req.flash('profe',"La contraseña no coincide");
         res.redirect('/Myprofile');
     }
 });
@@ -22,6 +24,7 @@ router.post("/changeemailprof",(req, res)=>{
             if (err){
                 console.log(err);
             }else{
+                req.flash('profe',"El correo ha sido actualizado");
                 res.redirect('/Myprofile');
             }
         });
@@ -34,6 +37,7 @@ router.post("/changedataprof",(req, res)=>{
         if(err){
             console.log(err);
         }else{
+            req.flash('profe',"Los datos han sido actualizados");
             res.redirect('/Myprofile');
         }
     });
@@ -46,10 +50,12 @@ router.post("/changepasswordalumno", (req, res) => {
             if (err){
                 console.log(err);
             }else{
+                req.flash('alumno',"La contraseña ha sido actualizada");
                 res.redirect('/Myprofile');
             }
         });
     }else{
+        req.flash('alumno',"La contraseña no coincide");
         res.redirect('/Myprofile');
     }
 });
@@ -60,6 +66,7 @@ router.post("/changeemailalumno", (req, res) => {
             if (err){
                 console.log(err);
             }else{
+                
                 res.redirect('/Myprofile');
             }
         });
@@ -72,10 +79,12 @@ router.post("/changepasswordadmin",(req, res)=>{
             if (err){
                 console.log(err);
             }else{
+                req.flash('admin',"La contraseña ha sido actualizada");
                 res.redirect('/Myprofile');
             }
         });
     }else{
+        req.flash('admin',"La contraseña no coincide");
         res.redirect('/Myprofile');
     }
 });
@@ -86,6 +95,7 @@ router.post("/changeemailadmin",(req, res)=>{
             if (err){
                 console.log(err);
             }else{
+                req.flash('admin',"El correo ha sido actualizado");
                 res.redirect('/Myprofile');
             }
         });
@@ -97,6 +107,7 @@ router.post("/changedataadmin",(req, res)=>{
         if(err){
             console.log(err);
         }else{
+            req.flash('admin',"Los datos han sido actualizados");
             res.redirect('/Myprofile');
         }
     });

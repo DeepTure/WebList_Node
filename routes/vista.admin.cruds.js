@@ -39,6 +39,7 @@ router.post("/CRUDprofesor", (req, res) => {
                                 if (err) {
                                     console.log(err);
                                 } else {
+                                    req.flash('prof', 'Profesor Registrado Correctamente');
                                     res.redirect("/homeadmin");
                                 }
                             }
@@ -68,6 +69,7 @@ router.post("/CRUDprofesor", (req, res) => {
                                 if (err) {
                                     console.log(err);
                                 } else {
+                                    req.flash('prof', 'Modificacion de datos correctamente');
                                     res.redirect("/homeadmin");
                                 }
                             }
@@ -93,6 +95,7 @@ router.post("/CRUDprofesor", (req, res) => {
                                 if (err) {
                                     console.log(err);
                                 } else {
+                                    req.flash('prof', 'Agrego de materia al profesor de manera correcta');
                                     res.redirect("/homeadmin");
                                 }
                             }
@@ -118,6 +121,7 @@ router.get("/eliminarprofe/:numEmpleado", (req, res) => {
             if (err) {
                 console.log(err);
             } else {
+                req.flash('prof', 'Profesor Eliminado Correctamente');
                 res.redirect("/homeadmin");
             }
         }
@@ -160,6 +164,7 @@ router.post("/CRUDalumno", (req, res) => {
                                 if (err) {
                                     console.log(err);
                                 } else {
+                                    req.flash('alumn', 'Alumno Registrado Correctamente');
                                     res.redirect("/homeadmin");
                                 }
                             }
@@ -189,6 +194,7 @@ router.post("/CRUDalumno", (req, res) => {
                                 if (err) {
                                     console.log(err);
                                 } else {
+                                    req.flash('alumn', 'Modificacion de datos correctamente');
                                     res.redirect("/homeadmin");
                                 }
                             }
@@ -214,6 +220,7 @@ router.post("/CRUDalumno", (req, res) => {
                                 if (err) {
                                     console.log(err);
                                 } else {
+                                    req.flash('alumn', 'Agrego de grupo al alumno de manera correcta');
                                     res.redirect("/homeadmin");
                                 }
                             }
@@ -236,6 +243,7 @@ router.get("/eliminaralumno/:boleta", (req, res) => {
         if (err) {
             console.log(err);
         } else {
+            req.flash('alumn', 'Alumno eliminado correctamente');
             res.redirect("/homeadmin");
         }
     });

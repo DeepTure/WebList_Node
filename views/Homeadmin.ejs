@@ -163,6 +163,14 @@
             <p class="space">
                 <br />
             </p>
+
+            <% if(succesalumn){ %>
+                <%= succesalumn %>
+                <p class="space">
+                    <br />
+            </p>
+            <% } %>   
+
             <% if(alumno.length > 0){ %>
             <div>
                 <table id="alumnosDeGrupo">
@@ -290,6 +298,13 @@
             <p class="space">
                 <br />
             </p>
+            <% if(succesprof){ %>
+                <%= succesprof %>
+                <p class="space">
+                    <br />
+            </p>
+            <% } %>    
+
             <% if(profesor.length > 0){ %>
             <div>
                 <table id="alumnosDeGrupo">
