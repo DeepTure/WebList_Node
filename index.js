@@ -126,13 +126,31 @@ app.use(login);
 app.use(vistaAdmin);
 app.use(crudAlumno);
 app.use(profile);
+
 //rutas de emergencia cuando ocurre
-//un error 404 (pagina no encontrada) o 500 (error interno del servidor)
-//NO DESCOMENTAR ESTAS LINEAS HASTA QUE EXISTAN LAS PAGINAS
 app.use((req, res) => {
     res.status(404);
     //se necesita crear la pagina
     res.render("error",{error:404, message:'No hemos podido encontrar su pagina'});
+});
+
+app.use((req,res)=>{
+    /*la petición es correcta pero el servidor se niega a ofrecerte el recurso o página web. Es posible que necesites una cuenta en el servicio e iniciar sesión 
+    antes de poder acceder.*/ 
+    res.status(403);
+    res.render('error',{error:403, message:'Ha Ocurrido un error'});
+});
+
+app.use((req,res)=>{
+    //no se permite el uso de ese método.
+    res.status(405);
+    res.render('error',{error:405, message:'Ha ocurrido un error de negación'});
+});
+
+app.use((req,res)=>{
+    //el servidor aun no ha implementado el método que se ha pedido, aunque es probable que se añada en un futuro.
+    res.status(501);
+    res.render('error',{error:501, message:'Ha ocurrido un error'});
 });
 
 app.use((error, req, res, next) => {
