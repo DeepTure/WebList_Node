@@ -132,7 +132,7 @@ app.use(profile);
 app.use((req, res) => {
     res.status(404);
     //se necesita crear la pagina
-    res.render("error",{error:404});
+    res.render("error",{error:404, message:'No hemos podido encontrar su pagina'});
 });
 
 app.use((error, req, res, next) => {
