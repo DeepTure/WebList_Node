@@ -3,7 +3,7 @@ var patron_ApellidoPM=/^[áéíóúÁÉÍÓÚña-zA-Z]{1,20}/
 var patron_numEmpleado=/^[0-9]{1,10}/
 var patron_boleta=/^[0-9]{10}/
 var patron_email = /^(^[\w+.]+@{1}[a-z]+(([.](com|web|org|gob|ipn)){1}([.](jp|es|mx))?){1}$){1}/;
-var patron_contra=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{1,100}$/
+var patron_contra=/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{8,100}$/
 
 function Nombres(nombre) {
     console.log(nombre);
