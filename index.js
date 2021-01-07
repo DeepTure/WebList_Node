@@ -21,7 +21,6 @@ const flash = require("connect-flash");
 
 //routers
 const main = require("./routes/main.routes");
-//const crudAlumno = require("./routes/crud.alumno.routes");
 const crudAsistencia = require("./routes/logic.paseLista.routes");
 const navegacion = require("./routes/navegacion.rutas");
 const login = require("./routes/logic.login");
