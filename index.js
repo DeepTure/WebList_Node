@@ -70,6 +70,7 @@ passport.use(
                 [username, password, username, password, username, password],
                 (err, rows) => {
                     if (err)
+                        console.log(err);
                         return done(null, false, {
                             message: "Hubo un fallo en el proceso",
                         });
