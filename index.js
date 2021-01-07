@@ -19,18 +19,6 @@ const session = require("express-session");
 const Passportlocal = require("passport-local").Strategy;
 const flash = require("connect-flash");
 
-//cosas del multer
-const multer = require("multer");
-var storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, "../temp/"));
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname);
-    },
-});
-var upload = multer({ storage: storage });
-
 //routers
 const main = require("./routes/main.routes");
 const crudAsistencia = require("./routes/logic.paseLista.routes");
