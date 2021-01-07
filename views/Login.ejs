@@ -4,6 +4,11 @@
         <title>WebList</title>
         <link rel="shortcut icon" href="/public/Img/DeepTureL.ico" />
         <meta charset="utf-8" />
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous"
+        ></script>
         <link
             rel="stylesheet"
             type="text/css"
@@ -101,6 +106,7 @@
             }
         </style>
         <script src="/public/validate.js"></script>
+        <script src="/public/manager.js"></script>
     </head>
     <body link="Black" vlink="Black" alink="Black" class="bg-img">
         <nav>
@@ -135,16 +141,24 @@
             <div class="space">
                 <br />
             </div>
-            <p class="subtitle white">Nota: En caso de ser su primera vez en el sistema, la contraseña es su usuario</p>
+            <p class="subtitle white">
+                Nota: En caso de ser su primera vez en el sistema, la contraseña
+                es su usuario
+            </p>
             <% } %>
             <div>
-                <form method="post" id="LogIn" action="/InicioSesionController">
+                <form
+                    method="post"
+                    id="Log"
+                    action="/InicioSesionController"
+                    encrypt="multipart/form-data"
+                >
                     <p class="subtitle white">Usuario</p>
                     <div class="space">
                         <br />
                     </div>
                     <input
-                        placeholder = "# de empleado / boleta"
+                        placeholder="# de empleado / boleta"
                         type="text"
                         id="Account"
                         class="inputtxt white"
@@ -160,7 +174,7 @@
                         <br />
                     </div>
                     <input
-                        placeholder = "Contraseña"
+                        placeholder="Contraseña"
                         type="password"
                         id="Password"
                         class="inputtxt white"
@@ -181,7 +195,46 @@
                     />
                     <div class="space">
                         <br />
-                    </div>  
+                    </div>
+                    <p class="subtitle white">
+                        Para Accerder con su firma llene los siguientes campos
+                    </p>
+                    <p class="subtitle white">Usuario</p>
+                    <div class="space">
+                        <br />
+                    </div>
+                    <input
+                        class="inputtxt white"
+                        placeholder="# de empleado / boleta"
+                        type="text"
+                        id="user"
+                    />
+                    <div class="space">
+                        <br />
+                    </div>
+                    <p class="subtitle white">Su archivo .dat</p>
+                    <div class="space">
+                        <br />
+                    </div>
+                    <input type="file" id="fileDat" />
+                    <div class="space">
+                        <br />
+                    </div>
+                    <p class="subtitle white">Su archivo .txt</p>
+                    <div class="space">
+                        <br />
+                    </div>
+                    <input type="file" id="fileTxt" />
+                    <div class="space">
+                        <br />
+                        <br />
+                    </div>
+                    <input
+                        type="button"
+                        id="firmaLog"
+                        value="Inicia sesi&oacute;n"
+                        class="inputbutn int white"
+                    />
                     <!-- <input
                         type="button"
                         id="Recover"
