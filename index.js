@@ -21,12 +21,10 @@ const flash = require("connect-flash");
 
 //routers
 const main = require("./routes/main.routes");
-//const crudAlumno = require("./routes/crud.alumno.routes");
 const crudAsistencia = require("./routes/logic.paseLista.routes");
 const navegacion = require("./routes/navegacion.rutas");
 const login = require("./routes/logic.login");
 const vistaAdmin = require("./routes/vista.admin.cruds");
-const crudAlumno = require("./routes/crud.alumno.routes");
 const profile = require("./routes/profile");
 //variables
 
@@ -35,7 +33,6 @@ el process.env.PORT se usa para obtener el puerto por defecto
 de nuestro servicio de hosting o en su defecto usar el puerto 8080
 */
 app.set("host", process.env.PORT || 3000);
-//app.set("host", 8080);
 //para poder utilizar el render con ejs
 app.set("view engine", "ejs");
 app.engine("html", require("ejs").renderFile);
@@ -128,7 +125,6 @@ app.use(crudAsistencia);
 app.use(navegacion);
 app.use(login);
 app.use(vistaAdmin);
-app.use(crudAlumno);
 app.use(profile);
 
 //rutas de emergencia cuando ocurre
