@@ -108,98 +108,205 @@
             }
         </style>
         <script src="/public/validate.js"></script>
+        <script src="/public/manager.js"></script>
     </head>
     <body link="Black" vlink="Black" alink="Black" class="bg-img">
         <nav>
+            <p class="tittle">Mi Perfil</p>
             <p class="tittle">
-                Mi Perfil
-            </p>
-            <p class="tittle">
-                <%= alumno[0].nombre + " " + alumno[0].app + " " +  alumno[0].apm%>
+                <%= alumno[0].nombre + " " + alumno[0].app + " " +
+                alumno[0].apm%>
             </p>
             <p class="space">
-                <br>
-                <br>
+                <br />
+                <br />
             </p>
-            <% if(msj){ %>
-                <%= msj %>
-                <p class="space">
-                    <br />
+            <% if(msj){ %> <%= msj %>
+            <p class="space">
+                <br />
             </p>
-            <% } %>  
+            <% } %>
             <a href="/Homealumno">
-                <button class="inputbutn int nav">
-                    Volver
-                </button>
+                <button class="inputbutn int nav">Volver</button>
             </a>
         </nav>
         <div class="blockAn fg-img">
             <div class="space">
-                <br>
-                <br>
-                <br>
+                <br />
+                <br />
+                <br />
             </div>
-            <div class="title white" style="text-align: left; margin-left: 1.5rem;">
+            <div
+                class="title white"
+                style="text-align: left; margin-left: 1.5rem"
+            >
                 Cambiar contraseña
             </div>
             <div class="space">
-                <br>
+                <br />
             </div>
-            <div class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
-                Usar al menos 8 caracteres entre mayusculas y minusculas con al menos 1 numero
+            <div
+                class="subtitle white"
+                style="text-align: left; margin-left: 1.5rem"
+            >
+                Usar al menos 8 caracteres entre mayusculas y minusculas con al
+                menos 1 numero
             </div>
             <div class="space">
-                <br>
+                <br />
             </div>
             <div>
-                <form method="post" id="password" style="text-align: left;" action="changepasswordalumno">
-                    <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
+                <form
+                    method="post"
+                    id="password"
+                    style="text-align: left"
+                    action="changepasswordalumno"
+                >
+                    <p
+                        class="subtitle white"
+                        style="text-align: left; margin-left: 1.5rem"
+                    >
                         Nueva contraseña
                     </p>
                     <div class="space">
-                        <br>
+                        <br />
                     </div>
-                    <input type="hidden" name="instruction" value="changePassword">
-                    <input type="password" id="pass1" class="inputtxt" name="contraseña" style="margin-left: 1.5rem;">
+                    <input
+                        type="hidden"
+                        name="instruction"
+                        value="changePassword"
+                    />
+                    <input
+                        type="password"
+                        id="pass1"
+                        class="inputtxt"
+                        name="contraseña"
+                        style="margin-left: 1.5rem"
+                    />
                     <div class="space">
-                        <br>
+                        <br />
                     </div>
-                    <p class="subtitle white" style="text-align: left; margin-left: 1.5rem;">
+                    <p
+                        class="subtitle white"
+                        style="text-align: left; margin-left: 1.5rem"
+                    >
                         Confirmar contraseña
                     </p>
                     <div class="space">
-                        <br>
+                        <br />
                     </div>
-                    <input type="password" id="pass2" class="inputtxt" name="confirmar" style="margin-left: 1.5rem;">
-                    
-                    <input type="hidden" id="pass2" class="inputtxt" name="boleta" style="margin-left: 1.5rem;" value="<%= alumno[0].boleta %>">
+                    <input
+                        type="password"
+                        id="pass2"
+                        class="inputtxt"
+                        name="confirmar"
+                        style="margin-left: 1.5rem"
+                    />
+
+                    <input
+                        type="hidden"
+                        id="pass2"
+                        class="inputtxt"
+                        name="boleta"
+                        style="margin-left: 1.5rem"
+                        value="<%= alumno[0].boleta %>"
+                    />
                     <div class="space">
-                        <br>
+                        <br />
                     </div>
-                    <input type="submit" id="Login" value="Enviar" class="inputbutn int" style="margin-left: 1.5rem;">
+                    <input
+                        type="submit"
+                        id="Login"
+                        value="Enviar"
+                        class="inputbutn int"
+                        style="margin-left: 1.5rem"
+                    />
                 </form>
                 <p class="space">
-                    <br>
-                    <br>
-                    <br>
+                    <br />
+                    <br />
+                    <br />
                 </p>
             </div>
-            <form method="post" id="password" style="text-align: left;" action="changeemailalumno">
-                <div class="title white" style="text-align: left; margin-left: 1.5rem;">
+            <form
+                method="post"
+                id="password"
+                style="text-align: left"
+                action="changeemailalumno"
+            >
+                <div
+                    class="title white"
+                    style="text-align: left; margin-left: 1.5rem"
+                >
                     Modificar correo
                 </div>
                 <div class="space">
-                    <br>
+                    <br />
                 </div>
-                <input type="text" id="email" class="inputtxt" name="correo" style="margin-left: 1.5rem;">
+                <input
+                    type="text"
+                    id="email"
+                    class="inputtxt"
+                    name="correo"
+                    style="margin-left: 1.5rem"
+                />
                 <div class="space">
-                    <br>
+                    <br />
                 </div>
-                <input type="hidden" id="pass2" class="inputtxt" name="boleta" style="margin-left: 1.5rem;" value="<%= alumno[0].boleta %>">
+                <input
+                    type="hidden"
+                    id="pass2"
+                    class="inputtxt"
+                    name="boleta"
+                    style="margin-left: 1.5rem"
+                    value="<%= alumno[0].boleta %>"
+                />
                 <div class="space">
-                    <br>
+                    <br />
                 </div>
-                <input type="submit" id="Send" value="Enviar" class="inputbutn int" style="margin-left: 1.5rem;">
+                <input
+                    type="submit"
+                    id="Send"
+                    value="Enviar"
+                    class="inputbutn int"
+                    style="margin-left: 1.5rem"
+                />
+            </form>
+            <p class="space">
+                <br />
+                <br />
+                <br />
+            </p>
+            <form action="/">
+                <div
+                    class="title white"
+                    style="text-align: left; margin-left: 1.5rem"
+                >
+                    Generar firma
+                </div>
+                <div class="space">
+                    <br />
+                </div>
+                <div
+                    class="subtitle white"
+                    style="text-align: left; margin-left: 1.5rem"
+                >
+                    Al hacer click al boton se le pedira descargar dos archivos
+                    uno con .txt y otro con .dat, guarde bien estos archivos ya
+                    que estos le permitiran ingresar a la plataforma en caso de
+                    que haya olvidado su contraseña
+                </div>
+                <div class="space">
+                    <br />
+                    <br />
+                </div>
+                <input
+                    type="submit"
+                    id="entry"
+                    value="Generar"
+                    class="inputbutn int white"
+                    style="margin-left: 1.5rem"
+                />
             </form>
         </div>
     </body>

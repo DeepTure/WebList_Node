@@ -19,14 +19,26 @@ const session = require("express-session");
 const Passportlocal = require("passport-local").Strategy;
 const flash = require("connect-flash");
 
+//cosas del multer
+const multer = require("multer");
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, "../temp/"));
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    },
+});
+var upload = multer({ storage: storage });
+
 //routers
 const main = require("./routes/main.routes");
 const crudAsistencia = require("./routes/logic.paseLista.routes");
 const navegacion = require("./routes/navegacion.rutas");
 const login = require("./routes/logic.login");
 const vistaAdmin = require("./routes/vista.admin.cruds");
-const crudAlumno = require("./routes/crud.alumno.routes");
 const profile = require("./routes/profile");
+const firma = require("./routes/sign.routes");
 //variables
 
 /*
@@ -34,7 +46,6 @@ el process.env.PORT se usa para obtener el puerto por defecto
 de nuestro servicio de hosting o en su defecto usar el puerto 8080
 */
 app.set("host", process.env.PORT || 3000);
-//app.set("host", 8080);
 //para poder utilizar el render con ejs
 app.set("view engine", "ejs");
 app.engine("html", require("ejs").renderFile);
@@ -55,8 +66,6 @@ app.use(passport.initialize());
 app.use(flash());
 app.use(passport.session());
 
-
-
 //passport local
 passport.use(
     new Passportlocal(
@@ -66,44 +75,45 @@ passport.use(
             passReqToCallback: true,
         },
         (req, username, password, done) => {
-                db.query(
-                    "select * from profesor where (numEmpleado= ? AND contraseña= ?);" +
-                        "select * from administrador where (idAdmin= ? AND contraseña= ?);" +
-                        "select * from alumno where (boleta= ? AND contraseña= ?);",
-                    [username, password, username, password, username, password],
-                    (err, rows) => {
-                        if (err) return done(null, false, {message: "Hubo un fallo en el proceso"});
-                        if (rows[0].length > 0) {
-                            let profesor = rows[0];
-                            return done(null, {
-                                rol: "profesor",
-                                id: profesor[0].numEmpleado.toString(),
-                            });
-                        } else if (rows[1].length > 0) {
-                            let administrador = rows[1];
-                            return done(null, {
-                                rol: "administrador",
-                                id: administrador[0].idAdmin.toString(),
-                            });
-                        } else if (rows[2].length > 0) {
-                            let alumno = rows[2];
-                            return done(null, {
-                                rol: "alumno",
-                                id: alumno[0].boleta.toString(),
-                            });
-                        } else {
-                            return done(null, false, {
-                                message:
-                                    "Usuario y/o contraseña incorrectos, Intentelo nuevamente",
-                            });
-                        }
+            db.query(
+                "select * from profesor where (numEmpleado= ? AND contraseña= ?);" +
+                    "select * from administrador where (idAdmin= ? AND contraseña= ?);" +
+                    "select * from alumno where (boleta= ? AND contraseña= ?);",
+                [username, password, username, password, username, password],
+                (err, rows) => {
+                    if (err)
+                        return done(null, false, {
+                            message: "Hubo un fallo en el proceso",
+                        });
+                    if (rows[0].length > 0) {
+                        let profesor = rows[0];
+                        return done(null, {
+                            rol: "profesor",
+                            id: profesor[0].numEmpleado.toString(),
+                        });
+                    } else if (rows[1].length > 0) {
+                        let administrador = rows[1];
+                        return done(null, {
+                            rol: "administrador",
+                            id: administrador[0].idAdmin.toString(),
+                        });
+                    } else if (rows[2].length > 0) {
+                        let alumno = rows[2];
+                        return done(null, {
+                            rol: "alumno",
+                            id: alumno[0].boleta.toString(),
+                        });
+                    } else {
+                        return done(null, false, {
+                            message:
+                                "Usuario y/o contraseña incorrectos, Intentelo nuevamente",
+                        });
                     }
-                );
+                }
+            );
         }
     )
 );
-
-
 
 passport.serializeUser(function (user, done) {
     done(null, [user.rol, user.id]);
@@ -127,44 +137,48 @@ app.use(crudAsistencia);
 app.use(navegacion);
 app.use(login);
 app.use(vistaAdmin);
-app.use(crudAlumno);
 app.use(profile);
+app.use(firma);
 
 //rutas de emergencia cuando ocurre
 app.use((req, res) => {
     res.status(404);
     //se necesita crear la pagina
-    res.render("error",{error:404, message:'No hemos podido encontrar su pagina'});
+    res.render("error", {
+        error: 404,
+        message: "No hemos podido encontrar su pagina",
+    });
 });
 
-app.use((req,res)=>{
+app.use((req, res) => {
     /*la petición es correcta pero el servidor se niega a ofrecerte el recurso o página web. Es posible que necesites una cuenta en el servicio e iniciar sesión 
-    antes de poder acceder.*/ 
+    antes de poder acceder.*/
     res.status(403);
-    res.render('error',{error:403, message:'Ha Ocurrido un error'});
+    res.render("error", { error: 403, message: "Ha Ocurrido un error" });
 });
 
-app.use((req,res)=>{
+app.use((req, res) => {
     //no se permite el uso de ese método.
     res.status(405);
-    res.render('error',{error:405, message:'Ha ocurrido un error de negación'});
+    res.render("error", {
+        error: 405,
+        message: "Ha ocurrido un error de negación",
+    });
 });
 
-app.use((req,res)=>{
+app.use((req, res) => {
     //el servidor aun no ha implementado el método que se ha pedido, aunque es probable que se añada en un futuro.
     res.status(501);
-    res.render('error',{error:501, message:'Ha ocurrido un error'});
+    res.render("error", { error: 501, message: "Ha ocurrido un error" });
 });
 
 app.use((error, req, res, next) => {
     res.status(500);
     //se necesita crear la pagina
-    res.render("error", { error: 500, message:error});
+    res.render("error", { error: 500, message: error });
 });
 
 //montando el servidor
-
-
 
 app.listen(app.get("host"), (req, res) => {
     console.log("Servidor en puerto: " + app.get("host"));
