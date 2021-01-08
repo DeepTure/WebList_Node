@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const db = require("../database/connection");
 const validacion = require("./validacion");
+const crypto = require('crypto');
 router.post("/changepasswordprof",(req, res)=>{
     var {contraseña, confirmar, numEmpleado} = req.body;
     var validacioncon=validacion.contra(contraseña);
@@ -8,7 +9,10 @@ router.post("/changepasswordprof",(req, res)=>{
     if (validacioncon.aceptacion) {
         if (validacioncona.aceptacion) {
             if(contraseña== confirmar){
-                db.query("update profesor set contraseña=? where numEmpleado= ?",[contraseña,numEmpleado],(err,result)=>{
+                const hash = crypto.createHash('sha256');
+                hash.update(contraseña);
+                var asegurado=hash.digest('hex')
+                db.query("update profesor set contraseña=? where numEmpleado= ?",[asegurado,numEmpleado],(err,result)=>{
                     if (err){
                         console.log(err);
                     }else{
@@ -86,7 +90,10 @@ router.post("/changepasswordalumno", (req, res) => {
     if (validacioncon.aceptacion) {
         if (validacioncona.aceptacion) {
             if(contraseña== confirmar){
-                db.query("update alumno set contraseña=? where boleta= ?",[contraseña,boleta],(err,result)=>{
+                const hash = crypto.createHash('sha256');
+                    hash.update(contraseña);
+                    var asegurado=hash.digest('hex')
+                db.query("update alumno set contraseña=? where boleta= ?",[asegurado,boleta],(err,result)=>{
                     if (err){
                         console.log(err);
                     }else{
@@ -133,7 +140,10 @@ router.post("/changepasswordadmin",(req, res)=>{
     if (validacioncon.aceptacion) {
         if (validacioncona.aceptacion) {
             if(contraseña== confirmar){
-                db.query("update administrador set contraseña=? where idAdmin= ?",[contraseña,idAdmin],(err,result)=>{
+                const hash = crypto.createHash('sha256');
+                hash.update(contraseña);
+                var asegurado=hash.digest('hex')
+                db.query("update administrador set contraseña=? where idAdmin= ?",[asegurado,idAdmin],(err,result)=>{
                     if (err){
                         console.log(err);
                     }else{

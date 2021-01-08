@@ -2,6 +2,7 @@
 const router = require("express").Router();
 const db = require("../database/connection");
 const validacion= require("./validacion");
+const crypto = require('crypto');
 //CRUD del profesor mediante el formulario
 router.post("/CRUDprofesor", (req, res) => {
     //guardamos los datos que recibimos de la vista y los que requerimos para realiar el proceso
@@ -18,10 +19,14 @@ router.post("/CRUDprofesor", (req, res) => {
         var validacionnom=validacion.Nombres(nombre);
         var validacionapp=validacion.ApellidoPM(app);
         var validacionapm=validacion.ApellidoPM(apm);
+
         if (validacionnum.aceptacion) {
             if (validacionnom.aceptacion) {
                 if (validacionapp.aceptacion) {
                     if (validacionapm.aceptacion) {
+                        const hash = crypto.createHash('sha256');
+                        hash.update(contraseña);
+                        var asegurado=hash.digest('hex')
                         db.query(
                             "select * from profesor where numEmpleado= ?",
                             [numEmpleado],
@@ -40,7 +45,7 @@ router.post("/CRUDprofesor", (req, res) => {
                                                     app,
                                                     apm,
                                                     correo,
-                                                    contraseña,
+                                                    contraseña:asegurado,
                                                 },
                                                 { idMateria_profesor, numEmpleado, idMateria },
                                             ],
@@ -205,6 +210,9 @@ router.post("/CRUDalumno", (req, res) => {
             if (validacionnom.aceptacion) {
                 if (validacionapp.aceptacion) {
                     if (validacionapm.aceptacion) {
+                        const hash = crypto.createHash('sha256');
+                        hash.update(contraseña);
+                        var asegurado=hash.digest('hex')
                         db.query(
                             "select * from alumno where boleta= ?",
                             [boleta],
@@ -223,7 +231,7 @@ router.post("/CRUDalumno", (req, res) => {
                                                     app,
                                                     apm,
                                                     correo,
-                                                    contraseña,
+                                                    contraseña:asegurado,
                                                 },
                                                 { idInscripcion, boleta, idGrupo, cicloE },
                                             ],

@@ -63,11 +63,15 @@ passport.use(
             passReqToCallback: true,
         },
         (req, username, password, done) => {
+            const crypto = require('crypto');
+            const hash = crypto.createHash('sha256');
+            hash.update(password);
+            var asegurado=hash.digest('hex')
             db.query(
                 "select * from profesor where (numEmpleado= ? AND contraseña= ?);" +
                     "select * from administrador where (idAdmin= ? AND contraseña= ?);" +
                     "select * from alumno where (boleta= ? AND contraseña= ?);",
-                [username, password, username, password, username, password],
+                [username, asegurado, username, asegurado, username, asegurado],
                 (err, rows) => {
                     if (err){
                         console.log(err);
