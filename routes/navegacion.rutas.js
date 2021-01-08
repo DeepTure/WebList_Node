@@ -79,13 +79,13 @@ function enviarCorreo(correo, contrasena){
         try{
             if(error){
                 console.log('Error');
-                res.status(500).send(error.message);
     
             }else{
                 console.log('Email enviado');
             }
         }catch(err){
             console.log('Error inesperado '+err);
+            console.log(err.message);
         }
     });
 }
