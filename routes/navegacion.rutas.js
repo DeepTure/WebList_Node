@@ -79,7 +79,8 @@ function enviarCorreo(correo, contrasena){
         try{
             if(error){
                 console.log('Error');
-    
+                console.log(error);
+                console.log(error.message);
             }else{
                 console.log('Email enviado');
             }
