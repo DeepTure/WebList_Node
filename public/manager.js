@@ -48,7 +48,7 @@ $(document).ready(() => {
         let usr = $("#user").val();
         let ivalues = 0;
 
-        if (usr.length > 1) {
+        if (usr.length > 0) {
             formdata.append("usr", usr);
             ivalues++;
             if ($("#fileTxt").prop("files").length == 1) {
