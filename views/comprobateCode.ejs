@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            WebList
+        </title>
+        <link rel="shortcut icon" href="Img/DeepTureL.ico" />
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: no-preference)" href="/public/CSS/RespL.css">
+        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: no-preference)" href="/public/CSS/FuenteL.css">
+
+        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: dark)" href="/public/CSS/RespD.css">
+        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: light)" href="/public/CSS/RespL.css">
+
+        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: dark)" href="/public/CSS/FuenteD.css">
+        <link rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: light)" href="/public/CSS/FuenteL.css">
+
+        <style type="text/css">
+            .bg-img{
+                margin: 0;
+                background-image: url('/public/Img/BackgroundD.png');
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-position: 0 0;
+                background-attachment: fixed;
+                background-size: cover;
+                transition: background 1s;
+            }
+            .fg-img{
+                background-image: url('/public/Img/ForegroundD.png');
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-position: 0 0;
+                background-attachment: fixed;
+                background-size: cover;
+                transition: background 1s;
+            }
+            .logo{
+                background-image: url('/public/Img/DeepTureD.png');
+                background-size: 100%;
+                background-size: cover;
+                transition: background 1s;
+            }
+
+            .logoHelp{
+                background-image: url('/public/Img/HelpL.png');
+                background-size: 70%;
+                background-repeat: no-repeat;
+                background-position: 50% 0;
+                transition: background 1s;
+            }
+
+            @media screen and (prefers-color-scheme: light) {
+                .bg-img{
+                    background-image: url('/public/Img/BackgroundL.png');
+                    transition: background 1s;
+                }
+                .fg-img{
+                    background-image: url('/public/Img/ForegroundLHelp.png');
+                    transition: background 1s;
+                }
+                @media screen and (orientation: landscape){
+                    .fg-img{
+                        background-image: url('/public/Img/ForegroundL.png');
+                        transition: background 1s;
+                    }
+                }
+                .logo{
+                    background-image: url('/public/Img/DeepTureL.png');
+                    transition: background 1s;
+                }
+                .logoHelp{
+                    background-image: url('/public/Img/HelpD.png');
+                    transition: background 1s;
+                }
+            }
+        </style>
+    </head>
+    <body link="Black" vlink="Black" alink="Black" class="bg-img">
+
+        <nav>
+            <article class="ImgicoLog logo">
+
+            </article>
+        </nav>
+
+        <div class="blockAn fg-img">
+            <p class="space">
+                <br>
+                <!--No quitar el br dinamico-->
+            </p>
+            <p class="title white">
+                Codigo de recuperacion
+            </p>
+            <p class="space">
+                <br>
+            </p>
+            <p class="atxt white">
+                Ingrese el codigo que se envió en el correo: 
+            </p>
+            <p class="space">
+                <br>
+            </p>
+            <form method="post" action="/comprobateCode">
+                <p class="atxt white">
+                    Codigo:
+                </p>
+                <p class="space">
+                    <br>
+                </p>
+                <input type="text" name="code" class="inputtxt white">
+                <p class="space">
+                    <br>
+                    <br>
+                    <br>
+                </p>
+                <input type="submit" name="Send" class="inputbutn int white" value="Enviar Contraseña">
+            </form>
+            <input type="button" class="inputbutn int white" value="Menú principal" style="margin-top: 20%; margin-left: 80%;" onclick="location.href = '/'">
+        </div>
+
+        <% if(correo!='null'){ %>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+            <script>
+                Swal.fire({
+                    title: '<%=correo%>',
+                    icon: '<%=icon%>',
+                });
+            </script>
+        <%}%>
+        
+    </body>
+</html>

@@ -4,6 +4,7 @@
 */
 const router = require("express").Router();
 const db = require("../database/connection");
+let codigoG;
 
 router.get('/error',(req,res)=>{
     res.render('error',{});
@@ -18,7 +19,7 @@ const transporter = nodemailer.createTransport({
     secure: true, 
     auth: {
         user: 'jafetkevin575@gmail.com', 
-        pass: '6!T3UzpT' 
+        pass: '3CJ%BE82R@3^Z57' 
     }
 });
 
@@ -38,26 +39,35 @@ router.get('/recover',(req,res)=>{
     res.render('Recover',{correo:'null'});
 });
 
+router.post('/comprobateCode',(req,res)=>{
+    const data = req.body;
+    db.query('SELECT idUser from token where idtoken=?',[data.code],(err,id)=>{
+        res.render('comprobateCode',{correo:'Acceso concedido',icon:'success'});
+    });
+});
+
 router.post('/comprobateEmail',(req,res)=>{
     const data = req.body;
-
-        db.query('SELECT contraseña FROM profesor WHERE correo=?',[data.correo],(err,numEmpleado)=>{
+        db.query('SELECT contraseña,numEmpleado FROM profesor WHERE correo=?',[data.correo],(err,numEmpleado)=>{
             if(err)res.json(err)
             if(Array.isArray(numEmpleado) && !(numEmpleado.length === 0)){
-                enviarCorreo(data.correo, numEmpleado[0].contraseña);
-                res.render('Recover',{correo:'Se le ha enviado un correo con su contraseña',icon:'success'});
+                insertToken(numEmpleado[0].numEmpleado, generate());
+                enviarCorreo(data.correo, codigoG);
+                res.render('comprobateCode',{correo:'Se le ha enviado un correo con su contraseña',icon:'success'});
             }else{
-                db.query('SELECT contraseña FROM alumno WHERE correo=?',[data.correo],(err,boleta)=>{
+                db.query('SELECT contraseña,boleta FROM alumno WHERE correo=?',[data.correo],(err,boleta)=>{
                     if(err)res.json(err)
                     if(Array.isArray(boleta) && !(boleta.length === 0)){
-                        enviarCorreo(data.correo, boleta[0].contraseña);
-                        res.render('Recover',{correo:'Se le ha enviado un correo con su contraseña',icon:'success'});
+                        insertToken(boleta[0].boleta, generate());
+                        enviarCorreo(data.correo, codigoG);
+                        res.render('comprobateCode',{correo:'Se le ha enviado un correo con su contraseña',icon:'success'});
                     }else{
-                        db.query('SELECT contraseña FROM administrador WHERE correo=?',[data.correo],(err,id)=>{
+                        db.query('SELECT contraseña,idAdmin FROM administrador WHERE correo=?',[data.correo],(err,id)=>{
                             if(err)res.json(err)
                             if(Array.isArray(id) && !(id.length === 0)){
-                                enviarCorreo(data.correo, id[0].contraseña);
-                                res.render('Recover',{correo:'Se le ha enviado un correo con su contraseña',icon:'success'});
+                                insertToken(id[0].idAdmin, generate());
+                                enviarCorreo(data.correo, codigoG);
+                                res.render('comprobateCode',{correo:'Se le ha enviado un correo con su contraseña',icon:'success'});
                             }else{
                                 res.render('Recover',{correo:'No hemos encontrado su correo',icon:'error'});
                             }
@@ -66,7 +76,6 @@ router.post('/comprobateEmail',(req,res)=>{
                 });
             }
         })
-
 });
 
 function enviarCorreo(correo, contrasena){
@@ -91,6 +100,21 @@ function enviarCorreo(correo, contrasena){
             console.log(err.message);
         }
     });
+}
+
+function insertToken(idUser, code){
+    db.query('INSERT INTO token VALUES(?,?,now())',[code, idUser],(err,response)=>{
+        //No hace nada
+    });
+}
+
+function generate(){
+    let code = '';
+    for(var i=0; i<5; i++){
+        code += Math.floor(Math.random() * (9 - 0)) + 0;
+    }
+    codigoG = code;
+    return code;
 }
 
 module.exports = router;
