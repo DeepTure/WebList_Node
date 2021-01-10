@@ -19,7 +19,7 @@ const transporter = nodemailer.createTransport({
     secure: true, 
     auth: {
         user: 'jafetkevin575@gmail.com', 
-        pass: '3CJ%BE82R@3^Z57' 
+        pass: 'clhjhxejirvnjfth' 
     }
 });
 
@@ -41,8 +41,36 @@ router.get('/recover',(req,res)=>{
 
 router.post('/comprobateCode',(req,res)=>{
     const data = req.body;
-    db.query('SELECT idUser from token where idtoken=?',[data.code],(err,id)=>{
-        res.render('comprobateCode',{correo:'Acceso concedido',icon:'success'});
+    db.query('SELECT idUser,time from token where idtoken=?',[data.code],(err,id)=>{
+        if(err)res.send(err)
+        if(Array.isArray(id) && !(id.length === 0)){
+            //si entra aquí es porque el token es correcto, falta verificar si ha caducado y eliminarlo despues de usarlo
+            const hoy = new Date();
+            const caducacion = new Date(id[0].time);
+            if((hoy.getDate() == caducacion.getDate()) && (hoy.getMonth() == caducacion.getMonth()) && (hoy.getFullYear() == caducacion.getFullYear())){
+                if((hoy.getHours() >= caducacion.getHours()) && (hoy.getHours() <= (caducacion.getHours()+3))){
+                    //Debe tener una caducación de tres horas
+                    db.query('DELETE FROM token WHERE idtoken = ?',[data.code],(err,deleted)=>{
+                        if(err)res.json(err);
+                        //Solo así entra al software de nuevo
+                        res.render('comprobateCode',{correo:'Acceso concedido',icon:'success'});
+                    });
+                }else{
+                    db.query('DELETE FROM token WHERE idtoken = ?',[data.code],(err,deleted)=>{
+                        if(err)res.json(err);
+                        res.render('comprobateCode',{correo:'Acceso denegado, su token acaba de caducar',icon:'error'});
+                    });
+                }
+            }else{
+                res.render('comprobateCode',{correo:'Acceso denegado',icon:'error'});
+                db.query('DELETE FROM token WHERE idtoken = ?',[data.code],(err,deleted)=>{
+                    if(err)res.json(err);
+                    res.render('comprobateCode',{correo:'Acceso denegado, su token caducó',icon:'error'});
+                });
+            }  
+        }else{
+            res.render('comprobateCode',{correo:'Acceso denegado, su token no existe',icon:'error'});
+        }
     });
 });
 
@@ -104,7 +132,8 @@ function enviarCorreo(correo, contrasena){
 
 function insertToken(idUser, code){
     db.query('INSERT INTO token VALUES(?,?,now())',[code, idUser],(err,response)=>{
-        //No hace nada
+        if(err)console.log(err.message);
+        console.log(response);
     });
 }
 
