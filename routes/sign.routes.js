@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const passport = require("passport");
 const fs = require("fs").promises;
 const fsConstants = require("fs");
 const path = require("path");
@@ -87,6 +88,7 @@ router.post(
                                 [
                                     {
                                         idllaves: usr,
+                                        rol: req.user.rol,
                                         key: data,
                                     },
                                 ],
@@ -159,7 +161,7 @@ router.post(
                     ]);
 
                     child.stdout.on("data", (data) => {
-                        if (data == "true") {
+                        if (`${data}` == "true") {
                             check = true;
                         }
                     });
@@ -175,36 +177,27 @@ router.post(
                     });
 
                     child.on("close", async (code) => {
-                        console.log(code);
+                        console.log(code, check);
                         if (check == true) {
                             await quitFiles(usr);
-                            db.query(
-                                "SELECT idAdmin AS id,contraseña FROM administrador WHERE idAdmin=?;" +
-                                    "SELECT numEmpleado AS id,contraseña FROM profesor WHERE numEmpleado=?;" +
-                                    "SELECT boleta AS id,contraseña FROM alumno WHERE boleta=?",
-                                [usr, usr, usr],
-                                (err, data) => {
-                                    if (data[0].length > 0) {
-                                        let profesor = data[0];
-                                        return res.json({
-                                            data: profesor[0],
-                                            check: true,
-                                        });
-                                    } else if (data[1].length > 0) {
-                                        let administrador = data[1];
-                                        return res.json({
-                                            data: administrador[0],
-                                            check: true,
-                                        });
-                                    } else {
-                                        let alumno = data[2];
-                                        return res.json({
-                                            data: alumno[0],
-                                            check: true,
-                                        });
-                                    }
-                                }
-                            );
+                            let query = "";
+                            if (key[0].rol == "profesor") {
+                                query =
+                                    "SELECT numEmpleado AS id,contraseña FROM profesor WHERE numEmpleado=?";
+                            } else if (key[0].rol == "administrador") {
+                                query =
+                                    "SELECT idAdmin AS id,contraseña FROM administrador WHERE idAdmin=?";
+                            } else if (key[0].rol == "alumno") {
+                                query =
+                                    "SELECT boleta AS id,contraseña FROM alumno WHERE boleta=?";
+                            }
+                            db.query(query, [usr], (err, data) => {
+                                return res.json({
+                                    rol: key[0].rol,
+                                    data: data[0],
+                                    check: true,
+                                });
+                            });
                         } else {
                             await quitFiles(usr);
 
@@ -219,6 +212,29 @@ router.post(
                 data: false,
             });
         }
+    }
+);
+
+router.post(
+    "/signLog",
+    passport.authenticate("sign-auth", {
+        failureRedirect: "/",
+        failureFlash: true,
+        badRequestMessage: "No ha introducido los datos correspondientes",
+    }),
+    (req, res) => {
+        req.session.save((err) => {
+            if (err) {
+                return res.json(err);
+            }
+            if (req.user.rol == "profesor") {
+                return res.redirect("/homeprof");
+            } else if (req.user.rol == "administrador") {
+                return res.redirect("/homeadmin");
+            } else if (req.user.rol == "alumno") {
+                return res.redirect("/homealumno");
+            }
+        });
     }
 );
 

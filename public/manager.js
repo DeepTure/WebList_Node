@@ -73,8 +73,9 @@ $(document).ready(() => {
                 contentType: false,
                 success: (res) => {
                     if (res.check == true) {
-                        $("#Account").attr("value", res.data.id);
-                        $("#Password").attr("value", res.data.contraseña);
+                        $("#user").attr("value", res.data.id);
+                        $("#psw").attr("value", res.data.contraseña);
+                        $("#rol").attr("value", res.rol);
                         $("#Log").submit();
                     } else {
                         alert("No se reconoce su firma");

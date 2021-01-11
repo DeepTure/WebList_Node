@@ -56,6 +56,7 @@ app.use(passport.session());
 
 //passport local
 passport.use(
+    "local",
     new Passportlocal(
         {
             usernameField: "username",
@@ -63,17 +64,17 @@ passport.use(
             passReqToCallback: true,
         },
         (req, username, password, done) => {
-            const crypto = require('crypto');
-            const hash = crypto.createHash('sha256');
+            const crypto = require("crypto");
+            const hash = crypto.createHash("sha256");
             hash.update(password);
-            var asegurado=hash.digest('hex')
+            var asegurado = hash.digest("hex");
             db.query(
                 "select * from profesor where (numEmpleado= ? AND contraseña= ?);" +
                     "select * from administrador where (idAdmin= ? AND contraseña= ?);" +
                     "select * from alumno where (boleta= ? AND contraseña= ?);",
                 [username, asegurado, username, asegurado, username, asegurado],
                 (err, rows) => {
-                    if (err){
+                    if (err) {
                         console.log(err);
                         return done(null, false, {
                             message: "Hubo un fallo en el proceso",
@@ -105,6 +106,23 @@ passport.use(
                     }
                 }
             );
+        }
+    )
+);
+
+passport.use(
+    "sign-auth",
+    new Passportlocal(
+        {
+            usernameField: "username",
+            passwordField: "password",
+            passReqToCallback: true,
+        },
+        (req, username, password, done) => {
+            return done(null, {
+                rol: req.body.usrRol,
+                id: username,
+            });
         }
     )
 );

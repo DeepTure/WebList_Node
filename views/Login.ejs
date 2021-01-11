@@ -147,12 +147,7 @@
             </p>
             <% } %>
             <div>
-                <form
-                    method="post"
-                    id="Log"
-                    action="/InicioSesionController"
-                    encrypt="multipart/form-data"
-                >
+                <form method="post" action="/InicioSesionController">
                     <p class="subtitle white">Usuario</p>
                     <div class="space">
                         <br />
@@ -196,10 +191,17 @@
                     <div class="space">
                         <br />
                     </div>
-                    <input type="button" value="Recuperar contraseña" class="inputbutn int white" onclick="location.href ='/recover'">
+                    <input
+                        type="button"
+                        value="Recuperar contraseña"
+                        class="inputbutn int white"
+                        onclick="location.href ='/recover'"
+                    />
                     <div class="space">
                         <br />
                     </div>
+                </form>
+                <form action="/signLog" method="POST" id="Log">
                     <p class="subtitle white">
                         Para Accerder con su firma llene los siguientes campos
                     </p>
@@ -212,7 +214,10 @@
                         placeholder="# de empleado / boleta"
                         type="text"
                         id="user"
+                        name="username"
                     />
+                    <input type="hidden" id="psw" name="password" />
+                    <input type="hidden" id="rol" name="usrRol" />
                     <div class="space">
                         <br />
                     </div>
@@ -247,6 +252,11 @@
                         onclick="location.href = 'Recover.jsp'"
                     />-->
                 </form>
+                <div class="space">
+                    <br />
+                    <br />
+                    <br />
+                </div>
             </div>
         </div>
     </body>
