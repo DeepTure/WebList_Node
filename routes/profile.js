@@ -200,4 +200,56 @@ router.post("/changedataadmin",(req, res)=>{
                 res.redirect('/Myprofile');
     }
 });
+
+router.post("/changepass",(req,res)=>{
+    var{contraseña,confirmar,id,rol}=req.body;
+    var validacioncon=validacion.contra(contraseña);
+    var validacioncona=validacion.contra(confirmar);
+    if(validacioncon.aceptacion){
+        if(validacioncona.aceptacion){
+            if(contraseña == confirmar){
+                if (rol == "administrador") {
+                    const hash = crypto.createHash('sha256');
+                    hash.update(contraseña);
+                    var asegurado=hash.digest('hex')
+                    db.query("update administrador set contraseña=? where idAdmin= ?",[asegurado,id],(err,result)=>{
+                        if (err){
+                            console.log(err);
+                        }else{
+                            res.redirect('/');
+                        }
+                    });
+                }else if(rol == "profesor"){
+                    const hash = crypto.createHash('sha256');
+                    hash.update(contraseña);
+                    var asegurado=hash.digest('hex')
+                    db.query("update profesor set contraseña=? where numEmpleado= ?",[asegurado,id],(err,result)=>{
+                        if (err){
+                            console.log(err);
+                        }else{
+                            res.redirect('/');
+                        }
+                    });
+                }else if(rol == "alumno"){
+                    const hash = crypto.createHash('sha256');
+                    hash.update(contraseña);
+                    var asegurado=hash.digest('hex')
+                    db.query("update alumno set contraseña=? where boleta= ?",[asegurado,boleta],(err,result)=>{
+                        if (err){
+                            console.log(err);
+                        }else{
+                            res.redirect('/');
+                        }
+                    });
+                }
+            }else{
+                res.render('changepassword',{msj:'Las contraseñas no coinciden',icon:'error' ,info:id,rol:rol});
+            }
+        }else{
+            res.render('changepassword',{msj:'El formato de la contraseña no es correcto',icon:'error' ,info:id,rol:rol});
+        }
+    }else{
+        res.render('changepassword',{msj:'El formato de la contraseña no es correcto',icon:'error' ,info:id,rol:rol});
+    }
+})
 module.exports = router;

@@ -53,7 +53,7 @@ router.post('/comprobateCode',(req,res)=>{
                     db.query('DELETE FROM token WHERE idtoken = ?',[data.code],(err,deleted)=>{
                         if(err)res.json(err);
                         //Solo así entra al software de nuevo
-                        res.render('comprobateCode',{correo:'Acceso concedido',icon:'success'});
+                        res.render('changepassword',{msj:'Usuario Identificado, cambie contraseña',icon:'success',info:data.id,rol:data.rol});
                     });
                 }else{
                     db.query('DELETE FROM token WHERE idtoken = ?',[data.code],(err,deleted)=>{
@@ -81,21 +81,21 @@ router.post('/comprobateEmail',(req,res)=>{
             if(Array.isArray(numEmpleado) && !(numEmpleado.length === 0)){
                 insertToken(numEmpleado[0].numEmpleado, generate());
                 enviarCorreo(data.correo, codigoG);
-                res.render('comprobateCode',{correo:'Se le ha enviado un correo con su contraseña',icon:'success'});
+                res.render('comprobateCode',{correo:'Se le ha enviado un correo con su contraseña',icon:'success',info:numEmpleado[0].numEmpleado,rol:'profesor'});
             }else{
                 db.query('SELECT contraseña,boleta FROM alumno WHERE correo=?',[data.correo],(err,boleta)=>{
                     if(err)res.json(err)
                     if(Array.isArray(boleta) && !(boleta.length === 0)){
                         insertToken(boleta[0].boleta, generate());
                         enviarCorreo(data.correo, codigoG);
-                        res.render('comprobateCode',{correo:'Se le ha enviado un correo con su contraseña',icon:'success'});
+                        res.render('comprobateCode',{correo:'Se le ha enviado un correo con su contraseña',icon:'success',info:boleta[0].boleta, rol:'alumno'});
                     }else{
                         db.query('SELECT contraseña,idAdmin FROM administrador WHERE correo=?',[data.correo],(err,id)=>{
                             if(err)res.json(err)
                             if(Array.isArray(id) && !(id.length === 0)){
                                 insertToken(id[0].idAdmin, generate());
                                 enviarCorreo(data.correo, codigoG);
-                                res.render('comprobateCode',{correo:'Se le ha enviado un correo con su contraseña',icon:'success'});
+                                res.render('comprobateCode',{correo:'Se le ha enviado un correo con su contraseña',icon:'success',info:id[0].idAdmin, rol:'administrador'});
                             }else{
                                 res.render('Recover',{correo:'No hemos encontrado su correo',icon:'error'});
                             }
@@ -104,6 +104,10 @@ router.post('/comprobateEmail',(req,res)=>{
                 });
             }
         })
+});
+
+router.get('/changepassword', (req,res)=>{
+
 });
 
 function enviarCorreo(correo, contrasena){
