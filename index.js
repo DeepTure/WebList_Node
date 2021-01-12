@@ -119,10 +119,43 @@ passport.use(
             passReqToCallback: true,
         },
         (req, username, password, done) => {
-            return done(null, {
-                rol: req.body.usrRol,
-                id: username,
-            });
+            try {
+                let query = "";
+                if (req.body.usrRol == "profesor") {
+                    query =
+                        "select numEmpleado AS id from profesor where (numEmpleado= ? AND contraseña= ?)";
+                } else if (req.body.usrRol == "administrador") {
+                    query =
+                        "select idAdmin AS id from administrador where (idAdmin= ? AND contraseña= ?)";
+                } else if (req.body.usrRol == "alumno") {
+                    query =
+                        "select boleta AS id from alumno where (boleta= ? AND contraseña= ?)";
+                }
+                db.query(query, [username, password], (err, rows) => {
+                    if (err) {
+                        console.log(err);
+                        return done(null, false, {
+                            message: "Hubo un fallo en el proceso",
+                        });
+                    }
+                    if (rows.length > 0) {
+                        return done(null, {
+                            rol: req.body.usrRol,
+                            id: rows[0].id.toString(),
+                        });
+                    } else {
+                        return done(null, {
+                            rol: req.body.usrRol,
+                            id: username,
+                        });
+                    }
+                });
+            } catch (ex) {
+                console.log(ex);
+                return done(null, false, {
+                    message: "Hubo un fallo en el proceso",
+                });
+            }
         }
     )
 );

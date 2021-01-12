@@ -4,7 +4,7 @@ const mysql = require("mysql");
 const mysqlConnection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "avh%7#?bbeN1",
+    password: "A#2vp7+Qt9=V",
     database: "weblist",
     multipleStatements: true,
 });

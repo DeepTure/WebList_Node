@@ -161,7 +161,7 @@ router.post(
                     ]);
 
                     child.stdout.on("data", (data) => {
-                        if (`${data}` == "true") {
+                        if (`${data}`.startsWith("true")) {
                             check = true;
                         }
                     });
