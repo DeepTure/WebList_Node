@@ -1,0 +1,63 @@
+<%- include('partials/_header'); %>
+    <%- include('partials/_navLoged'); %>
+
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md">
+                <div class="card tarjeta px-4 py-4">
+                    <center><p class="h1">6IV9</p></center>
+                    <label class="mt-4">Ingrese el codigo de la clase:</label>
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                            <input type="button" class="btn btn-primary mx-3 px-5 mt-1" value="Buscar">
+                        </div>
+                    </div>
+
+                    <p class="mt-5">Filtros de grafica</p>
+                    <select class="form-control">
+                        <option>Materia</option>
+                    </select>
+                    <select class="form-control my-4">
+                        <option>Tiempo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md">
+                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.1QvYMHG33PamLk2i2-QsvgHaEc%26pid%3DApi&f=1" class="mt-1">
+
+                <table class="table mt-4 tarjeta bg-light">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<%- include('partials/_footer'); %>

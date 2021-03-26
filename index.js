@@ -27,6 +27,7 @@ const login = require("./routes/logic.login");
 const vistaAdmin = require("./routes/vista.admin.cruds");
 const profile = require("./routes/profile");
 const firma = require("./routes/sign.routes");
+const prototype = require("./routes/NuevasVistas");
 //variables
 
 /*
@@ -184,6 +185,7 @@ app.use(login);
 app.use(vistaAdmin);
 app.use(profile);
 app.use(firma);
+app.use(prototype);
 
 //rutas de emergencia cuando ocurre
 app.use((req, res) => {
