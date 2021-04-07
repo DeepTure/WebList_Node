@@ -1,0 +1,59 @@
+<%- include('partials/_header'); %>
+
+    <%- include('partials/_navLoged'); %>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md">
+                <div class="card tarjeta texto-mediano">
+                    <div class="d-block px-4 bg-dark rounded-lg">
+                        <i class="fas fa-circle" style="color: red;"></i>
+                        <i class="fas fa-circle" style="color: yellow;"></i>
+                        <i class="fas fa-circle" style="color: green;"></i>
+                        <i class=" ml-md-5" style="color: white;">Datos de perfil</i>
+                    </div>
+                    <div class="px-4">
+                        <center>
+                            <p class="h1">Datos de perfil</p>
+                        </center>
+                        <p>ID: XXXXXXXXX</p>
+                        <p>Correo: email@email.com</p>
+                        <p>Nombre: Juan Juarez</p>
+                        <p>Apellido paterno: Peréz</p>
+                        <p>Apellido materno: Pérez</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md mt-1">
+                <div class="card tarjeta">
+                    <p class="h1 text-center mb-4">Cambios</p>
+                    <form class="px-4">
+                        <label>Ingrese su contraseña</label>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-key"></i></div>
+                            </div>
+                            <input type="password" class="form-control" placeholder="">
+                        </div>
+                        <label>Confirme su contraseña</label>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-key"></i></div>
+                            </div>
+                            <input type="password" class="form-control" placeholder="">
+                        </div>
+                        <labe>Confirme su correo</labe>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-envelope"></i></div>
+                            </div>
+                            <input type="password" class="form-control" placeholder="">
+                        </div>
+                        <input type="button" value="Guardar" class="btn btn-primary px-5 my-4">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include('partials/_footer'); %>

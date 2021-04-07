@@ -1,0 +1,49 @@
+<%- include('partials/_header'); %>
+
+    <%- include('partials/_navLoged'); %>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md tarjeta card">
+                <div class=" ">
+                    <p class="texto-grande mx-3">Busqueda</p>
+                    <form class="px-3">
+                        <input type="text" class="form-control mb-4" placeholder="Boleta alumno">
+                        <input type="button" class="btn btn-primary mb-4 px-5" value="Buscar">
+                    </form>
+
+                    <p class="texto-grande mx-3">Filtros</p>
+                    <form class="px-3">
+                        <select class="form-control mb-4 ">
+                            <option>Tiempo</option>
+                        </select>
+                        <select class="form-control mb-4">
+                            <option>Grupo</option>
+                        </select>
+                        <input type="button" class="btn btn-primary mb-4 px-5" value="Aplicar filtros">
+                    </form>
+                </div>
+            </div>
+            <div class="col-md mt-1">
+                <!-- Quitar esta imagen y poner la grafica-->
+                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.1QvYMHG33PamLk2i2-QsvgHaEc%26pid%3DApi&f=1" class="mt-1">
+
+                <table class="table table-bordered mt-4" style="background-color: white;">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Boleta</th>
+                            <th scope="col"> </th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <th scope="row">12345</th>
+                        <th>Juan Juarez Perez</th>
+                        <th><button class="btn btn-danger">Eliminar</button></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<%- include('partials/_footer'); %>

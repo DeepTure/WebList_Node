@@ -14,4 +14,16 @@ router.get("/homealumnopt",(req,res) => {
     res.render("home-alumno-pt",{});
 });
 
+router.get("/profilept",(req,res) => {
+    res.render("profile-pt",{});
+});
+
+router.get("/homeadminpt",(req,res) => {
+    res.render("home-admin-pt",{});
+});
+
+router.get("/hometeacherpt",(req,res) => {
+    res.render("home-teacher-pt",{});
+});
+
 module.exports = router;

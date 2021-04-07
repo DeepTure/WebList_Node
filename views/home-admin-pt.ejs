@@ -1,0 +1,69 @@
+<%- include('partials/_header'); %>
+
+    <%- include('partials/_navLoged'); %>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md">
+                <div class="card tarjeta px-4">
+                    <p class="h3 text-center">registro</p>
+                    <form>
+                        <div class="form-row form-group mb-3">
+                            <label class="col-lg-2">ID:</label> <input type="text" class="form-control col">
+                        </div>
+                        <div class="form-row mb-3">
+                            <label class="col-lg-2">Nombre:</label> <input type="text" class="form-control col">
+                        </div>
+                        <div class="form-row mb-3">
+                            <label class="col-lg-4">Apellido paterno:</label> <input type="text" class="form-control col">
+                        </div>
+                        <div class="form-row mb-3">
+                            <label class="col-lg-4">Apellido materno:</label> <input type="text" class="form-control col">
+                        </div>
+                        <div class="form-row mb-3">
+                            <select class="form-control">
+                                <option>Profesor</option>
+                                <option>Alumno</option>
+                            </select>
+                        </div>
+                        <div class="form-row mb-3">
+                            <input type="button" class="btn btn-primary px-4" value="Guardar">
+                        </div>
+                    </form>
+                    <p class="h3 text-center my-4">Registro rapido</p>
+                    <div class="d-block py-2 mb-4" style="border-width: 3px; border-style: dashed; border-color: #949494;">
+                        <center><label class="texto-lijero">Arrastre archivo CSV</label></center>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <section class="form-inline">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-primary active">
+                          <input type="radio" name="options" id="option1" checked> Alumnos
+                        </label>
+                        <label class="btn btn-primary">
+                          <input type="radio" name="options" id="option2"> Profesores
+                        </label>
+                    </div>
+                    <label class="ml-md-4 mr-md-3">Buscar:</label>
+                    <input type="text" class="form-control" placeholder="2019093562">
+                </section>
+
+                <table class="table table-bordered table-hover mt-5" style="background-color: white;">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Datos</th>
+                            <th scope="col"> </th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <th scope="row"> </th>
+                        <th><button class="btn btn-danger">Eliminar</button></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<%- include('partials/_footer'); %>
